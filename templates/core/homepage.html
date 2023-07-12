@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <header class="jumbotron jumbotron-fluid bg-dark text-white text-center position-relative">
+        <div class="container position-absolute top-0 start-50 translate-middle-x">
+            <h1 class="display-4">Welcome to SMG Champions League</h1>
+            <p class="lead">Here you can find all the latest news and updates about the tournament.</p>
+            <p>Stay tuned for the upcoming 2023/2024 season!</p>
+        </div>
+        <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
+            <a href="accounts/register/" class="btn btn-primary btn-lg oval-button">REGISTER NOW</a>
+        </div>
+    </header>
+{% endblock %}

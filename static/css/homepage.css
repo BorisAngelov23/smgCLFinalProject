@@ -1,0 +1,15 @@
+.jumbotron {
+    background-image: url("https://wallpaperaccess.com/full/1348845.png");
+    background-size: cover;
+    background-position: center;
+    padding: 550px 0;
+}
+
+.container {
+    max-width: 960px;
+}
+
+div {
+    color: #FFFFFF;
+    text-align: center;
+}

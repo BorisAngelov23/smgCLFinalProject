@@ -1,0 +1,10 @@
+.jumbotron {
+    background-image: url("https://wwwimage-us.pplusstatic.com/thumbnails/photos/w1920-q80/marquee/1038640/ucl_sp_hero_landscape_0.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 450px 0;
+}
+
+form {
+    font-size: 20px;
+}
