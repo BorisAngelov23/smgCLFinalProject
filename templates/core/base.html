@@ -7,10 +7,10 @@
     <title>SMG Champions League</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="navbar-brand" href="{% url 'homepage' %}">SMG Champions League</a>
@@ -30,12 +30,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">About Us</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'captain_details' pk=user.pk %}">Profile</a>
+                    </li>
+                        {% else %}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'captain_login'%}">Login</a>
+                    </li>
+                    {% endif %}
+                    {# TODO add ''Your Team'' if the user has registered one with a link to Team Details Page #}
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.instagram.com/smgfootball2023/" target="_blank">
-                            <img src="{% static 'instagram-logo.png' %}" alt="Instagram" class="instagram-logo">
+                            <img src="{% static 'images/instagram-logo.png' %}" alt="Instagram" class="instagram-logo">
                         </a>
                     </li>
-
                 </ul>
     </nav>
     {% block content %}

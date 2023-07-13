@@ -101,3 +101,18 @@ input:focus{
     outline: none;
   box-shadow: 0 0 0 5px #01fae1;
 }
+
+select {
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+select:focus{
+    outline: none;
+  box-shadow: 0 0 0 5px #01fae1;
+}
+
+.div {
+    font-size: 25px;
+    text-align: center;
+    color: white;
+}

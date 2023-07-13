@@ -1,20 +1,17 @@
-.jumbotron-homepage {
-    background-image: url("https://wallpaperaccess.com/full/1348845.png");
+.jumbotron {
     background-size: cover;
     background-position: center;
     padding: 550px 0;
 }
 
-.container {
-    max-width: 960px;
-}
-
-div {
-    color: #FFFFFF;
-    text-align: center;
+.form {
+    font-size: 20px;
+    background-image: url("https://img.uefa.com/imgml/uefacom/ucl/2021/mdLive-bg_L.png");
+    align-items: center;
 }
 
 .container {
+  display: flex;
   justify-content: center;
   align-items: center;
   /*height: 100vh; !* Adjust the height as needed *!*/

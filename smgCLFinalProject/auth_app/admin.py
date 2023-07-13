@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from smgCLFinalProject.auth_app.models import CaptainUser
+
+admin.site.register(CaptainUser)

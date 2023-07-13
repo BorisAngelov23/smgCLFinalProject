@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <header class="jumbotron jumbotron-fluid text-white text-center position-relative">
+        <h1 class="display-4">Captain Login</h1>
+    </header>
+    <main class="container" style="margin-top: 30px">
+    <div>
+        <form method="post" action="{% url "captain_login" %}" style="font-size: 25px">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-lg oval-button" style="margin-top: 25px; margin-bottom: 25px">LOGIN</button>
+        </form>
+    </div>
+    </main>
+
+{% endblock %}

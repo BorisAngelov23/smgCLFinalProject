@@ -2,42 +2,20 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-    <header class="jumbotron jumbotron-fluid bg-dark text-white text-center position-relative">
-        <div class="container position-absolute top-0 start-50 translate-middle-x">
-            <h1 class="display-4">Registration form for captains</h1>
-            <p class="lead">If you are a captain, register yourself, and then you'll be able to register your team.</p>
-        </div>
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  var firstNameInput = $('#id_first_name');
-                  var lastNameInput = $('#id_last_name');
-                  var gradeInput = $('#id_grade');
-                  var paralelkaInput = $('#id_paralelka');
-                  var usernameInput = $('#id_username');
-
-                  firstNameInput.on('input', updateUsername);
-                  lastNameInput.on('input', updateUsername);
-                  gradeInput.on('input', updateUsername);
-                  paralelkaInput.on('input', updateUsername);
-
-                  function updateUsername() {
-                    var firstName = firstNameInput.val().trim();
-                    var lastName = lastNameInput.val().trim();
-                    var grade = gradeInput.val().trim();
-                    var paralelka = paralelkaInput.val().trim();
-                    var username = firstName + lastName + grade + paralelka;
-                    usernameInput.val(username);
-                  }
-                });
-              </script>
-          <button type="submit" class="btn btn-primary btn-lg oval-button">REGISTER</button>
-        </form>
-{#        <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">#}
-{#            <a href="accounts/register/" class="btn btn-primary btn-lg oval-button">REGISTER</a>#}
-{#        </div>#}
+    <header class="jumbotron jumbotron-fluid text-white text-center position-relative">
+        <h1 class="display-4">Registration form for captains</h1>
+        <p class="lead">If you are a captain, register yourself, and then you'll be able to register your team.</p>
+        <p class="lead">Keep in mind that your username for login will be auto generated from your first and last names, your grade, and your class.</p>
+        <p class="lead">E.g. RadostinZhelezchev12D</p>
     </header>
+    <main class="container" style="margin-top: 50px">
+    <div>
+        <form method="post" action="{% url "captain_register" %}" style="font-size: 25px">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-lg oval-button" style="margin-top: 25px; margin-bottom: 25px">REGISTER</button>
+        </form>
+    </div>
+    </main>
+
 {% endblock %}
