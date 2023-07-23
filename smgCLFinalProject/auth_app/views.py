@@ -1,7 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, DetailView, UpdateView
 
@@ -33,9 +32,19 @@ class CaptainDetails(DetailView):
     template_name = 'auth_app/captain_details.html'
     model = CaptainUser
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(pk=self.request.user.pk)
+
 
 class CaptainEdit(UpdateView):
     model = CaptainUser
     form_class = CaptainEditForm
     template_name = 'auth_app/captain_edit.html'
-    success_url = reverse_lazy('homepage')
+
+    def get_success_url(self):
+        return reverse_lazy('captain_details', kwargs={'pk': self.object.pk})
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(pk=self.request.user.pk)

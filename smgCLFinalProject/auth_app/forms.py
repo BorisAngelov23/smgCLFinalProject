@@ -56,9 +56,31 @@ class CaptainRegistrationForm(UserCreationForm):
 
 class CaptainEditForm(UserChangeForm):
     password = None
+
+    profile_picture = forms.ImageField(required=False)
+
     class Meta:
         model = CaptainUser
-        fields = ('first_name', 'last_name', 'grade', 'paralelka', 'email', 'facebook_link', 'phone_number')
+        fields = (
+            'first_name', 'last_name', 'grade', 'paralelka', 'email', 'facebook_link', 'phone_number',
+            'profile_picture')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].label = ''
+        self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
+        self.fields['first_name'].label = ''
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
+        self.fields['last_name'].label = ''
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
+        self.fields['phone_number'].label = ''
+        self.fields['phone_number'].widget.attrs.update({'placeholder': 'Phone Number'})
+        self.fields['facebook_link'].label = ''
+        self.fields['facebook_link'].widget.attrs.update(
+            {'placeholder': 'Facebook Link', 'title': 'Enter your Facebook page link for the Messenger group'})
+        self.fields['grade'].label = ''
+        self.fields['paralelka'].label = ''
+        self.fields['profile_picture'].label = ''
 
     def save(self, commit=True):
         user = super().save(commit=False)

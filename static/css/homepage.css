@@ -19,3 +19,8 @@ div {
   align-items: center;
   /*height: 100vh; !* Adjust the height as needed *!*/
 }
+
+.oval-button:active {
+    background-color: #01fae1;
+    color: #0E1E5B;
+}

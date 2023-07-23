@@ -93,6 +93,11 @@ body {
     color: #0E1E5B;
 }
 
+.oval-button:active {
+    background-color: #01fae1;
+    color: #0E1E5B;
+}
+
 input {
     padding: 10px 20px;
     border-radius: 50px;
