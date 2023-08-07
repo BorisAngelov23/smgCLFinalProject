@@ -11,7 +11,7 @@ from smgCLFinalProject.auth_app.models import CaptainUser
 class CaptainRegister(CreateView):
     form_class = CaptainRegistrationForm
     template_name = 'auth_app/register.html'
-    success_url = reverse_lazy('team_register')
+    success_url = reverse_lazy('choose_classes')
 
     def form_valid(self, form):
         result = super().form_valid(form)

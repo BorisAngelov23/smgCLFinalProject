@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <header class="jumbotron jumbotron-fluid text-white text-center position-relative">
+        <h1 class="display-4">Register your team</h1>
+        <p class="lead">Now add players to your team.</p>
+        <p class="lead">A team has a minimum of 6 players and a maximum of 10.</p>
+        <p class="lead">You have to add at least 5 players to your team as you are already a part of it.</p>
+    </header>
+    <main class="container" style="margin-top: 20px">
+    <div>
+        <form method="post" action="{% url 'add_players' %}" style="font-size: 25px">
+            {% csrf_token %}
+        {{ formset.management_form }}
+            {% for form in formset %}
+                <hr>
+                <p>Player {{ forloop.counter }}</p>
+                {{ form.as_p }}
+            {% endfor %}
+                <hr>
+            <button type="submit" class="btn btn-primary btn-lg oval-button" style="margin-top: 25px; margin-bottom: 25px">ADD PLAYERS</button>
+        </form>
+    </div>
+    </main>
+{% endblock %}

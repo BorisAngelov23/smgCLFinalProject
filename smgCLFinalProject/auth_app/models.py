@@ -12,3 +12,5 @@ class CaptainUser(AbstractUser):
     phone_number = models.CharField(max_length=10, null=True, blank=True)
     facebook_link = models.URLField(null=True, blank=False)
     profile_picture = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
+    position = models.CharField(max_length=2, choices=[('', 'Position'), ('GK', 'Goalkeeper'), ('DF', 'Defender'),
+                                                       ('MF', 'Midfielder'), ('FW', 'Forward')], default='')

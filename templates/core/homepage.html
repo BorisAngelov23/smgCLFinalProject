@@ -10,7 +10,17 @@
         </div>
         {% if not user.is_authenticated %}
         <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
-            <a href="register/" class="btn btn-primary btn-lg oval-button">REGISTER NOW</a>
+            <a href="{% url 'captain_register' %}" class="btn btn-primary btn-lg oval-button">REGISTER NOW</a>
+        </div>
+        {% endif %}
+        {% if not user.team and user.is_authenticated %}
+            <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
+            <a href="{% url 'choose_classes' %}" class="btn btn-primary btn-lg oval-button">REGISTER TEAM</a>
+        </div>
+        {% endif %}
+        {% if user.team and user.is_authenticated%}
+            <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
+            <a href="{% url 'add_players' %}" class="btn btn-primary btn-lg oval-button">ADD PLAYERS</a>
         </div>
         {% endif %}
     </header>

@@ -36,6 +36,7 @@ class CaptainRegistrationForm(UserCreationForm):
             {'placeholder': 'Facebook Link', 'title': 'Enter your Facebook page link for the Messenger group'})
         self.fields['grade'].label = ''
         self.fields['paralelka'].label = ''
+        self.fields['position'].label = ''
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -51,7 +52,7 @@ class CaptainRegistrationForm(UserCreationForm):
     class Meta:
         model = CaptainUser
         fields = ('first_name', 'last_name', 'grade', 'paralelka', 'password1', 'password2', 'email', 'facebook_link',
-                  'phone_number')
+                  'phone_number', 'position')
 
 
 class CaptainEditForm(UserChangeForm):
@@ -63,7 +64,7 @@ class CaptainEditForm(UserChangeForm):
         model = CaptainUser
         fields = (
             'first_name', 'last_name', 'grade', 'paralelka', 'email', 'facebook_link', 'phone_number',
-            'profile_picture')
+            'profile_picture', 'position')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
