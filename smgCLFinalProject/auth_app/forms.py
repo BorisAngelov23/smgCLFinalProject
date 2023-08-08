@@ -38,6 +38,22 @@ class CaptainRegistrationForm(UserCreationForm):
         self.fields['paralelka'].label = ''
         self.fields['position'].label = ''
 
+    def clean(self):
+        cleaned_data = super().clean()
+        grade = cleaned_data.get('grade')
+        registered_captains_count_from_the_same_grade = CaptainUser.objects.filter(grade=grade).count()
+        if grade == '8' and registered_captains_count_from_the_same_grade > 0:
+            raise forms.ValidationError('There is already a captain from 8th grade')
+        elif grade == '9' and registered_captains_count_from_the_same_grade > 1:
+            raise forms.ValidationError('There are already 2 captains from 9th grade')
+        elif grade == '10' and registered_captains_count_from_the_same_grade > 2:
+            raise forms.ValidationError('There are already 3 captains from 10th grade')
+        elif grade == '11' and registered_captains_count_from_the_same_grade > 5:
+            raise forms.ValidationError('There are already 6 captains from 11th grade')
+        elif grade == '12' and registered_captains_count_from_the_same_grade > 5:
+            raise forms.ValidationError('There are already 6 captains from 12th grade')
+
+
     def save(self, commit=True):
         user = super().save(commit=False)
         first_name = self.cleaned_data['first_name']

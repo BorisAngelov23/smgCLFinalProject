@@ -1,5 +1,5 @@
-from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser, User, AbstractBaseUser
 from django.db import models
 
 
@@ -14,3 +14,4 @@ class CaptainUser(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures', null=True, blank=True)
     position = models.CharField(max_length=2, choices=[('', 'Position'), ('GK', 'Goalkeeper'), ('DF', 'Defender'),
                                                        ('MF', 'Midfielder'), ('FW', 'Forward')], default='')
+    added_players = models.BooleanField(default=False)

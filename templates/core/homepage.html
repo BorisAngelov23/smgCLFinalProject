@@ -18,7 +18,7 @@
             <a href="{% url 'choose_classes' %}" class="btn btn-primary btn-lg oval-button">REGISTER TEAM</a>
         </div>
         {% endif %}
-        {% if user.team and user.is_authenticated%}
+        {% if user.team and user.is_authenticated and not user.added_players %}
             <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
             <a href="{% url 'add_players' %}" class="btn btn-primary btn-lg oval-button">ADD PLAYERS</a>
         </div>

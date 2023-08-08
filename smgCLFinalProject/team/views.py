@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import formset_factory
+from django.forms import formset_factory, BaseFormSet
+from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -39,18 +41,51 @@ class TeamRegister(CreateView, LoginRequiredMixin):
         return kwargs
 
 
+class FirstFiveRequiredFormset(BaseFormSet):
+    def __init__(self, *args, **kwargs):
+        super(FirstFiveRequiredFormset, self).__init__(*args, **kwargs)
+        self.user = kwargs.pop('user', None)
+        i = 1
+        for form in self.forms:
+            if i < 6:
+                form.empty_permitted = False
+            i += 1
+
+    def clean(self):
+        user = getattr(self, 'user', None)
+        gk = False
+        transfers = 0
+        for form in self.forms:
+            if form.cleaned_data.get("position") == "GK":
+                gk = True
+
+            if (form.cleaned_data.get("paralelka") not in user.team.paralelki or form.cleaned_data.get("grade") != user.grade) and not transfers:
+                transfers += 1
+        if not gk:
+            raise forms.ValidationError("You must have at least one goalkeeper")
+        if transfers > 1:
+            raise forms.ValidationError("You can have up to 1 transfer (must be from your grade) in your team.")
+        print(self.non_form_errors())
+
+
+@login_required
 def create_multiple_players(request):
-    FootballPlayerFormSet = formset_factory(PlayerForm, extra=9)
+    FootballPlayerFormSet = formset_factory(PlayerForm, extra=9, formset=FirstFiveRequiredFormset)
     if request.method == 'GET':
         formset = FootballPlayerFormSet()
         return render(request, 'team/add_players.html', {'formset': formset})
     else:
-        formset = FootballPlayerFormSet(request.POST)
+        formset = FootballPlayerFormSet(request.POST, form_kwargs={'user': request.user})
+        formset.user = request.user
         if formset.is_valid():
             for form in formset:
-                player = form.save(commit=False)
-                player.team = request.user.team
-                form.save()
+                if form.is_valid:
+                    form.clean()
+                    if form.has_changed():
+                        player = form.save(commit=False)
+                        player.team = request.user.team
+                        form.save()
+            request.user.added_players = True
             return redirect('homepage')
         else:
             return render(request, 'team/add_players.html', {'formset': formset})
