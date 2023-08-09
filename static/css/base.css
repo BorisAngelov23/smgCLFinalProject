@@ -121,3 +121,17 @@ select:focus{
     text-align: center;
     color: white;
 }
+
+.non-field-errors {
+    background-color: #ffdddd;
+    color: red;
+    border: 1px solid red;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.errorlist {
+    color: red;
+    list-style: none;
+    margin-right: 30px;
+}

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from smgCLFinalProject.auth_app.models import CaptainUser
+from smgCLFinalProject.team.models import Player
 
 
 class CaptainRegistrationForm(UserCreationForm):
@@ -53,7 +54,6 @@ class CaptainRegistrationForm(UserCreationForm):
         elif grade == '12' and registered_captains_count_from_the_same_grade > 5:
             raise forms.ValidationError('There are already 6 captains from 12th grade')
 
-
     def save(self, commit=True):
         user = super().save(commit=False)
         first_name = self.cleaned_data['first_name']
@@ -74,38 +74,39 @@ class CaptainRegistrationForm(UserCreationForm):
 class CaptainEditForm(UserChangeForm):
     password = None
 
-    profile_picture = forms.ImageField(required=False)
+    profile_picture = forms.ImageField(required=False, widget=forms.FileInput)
 
     class Meta:
         model = CaptainUser
         fields = (
-            'first_name', 'last_name', 'grade', 'paralelka', 'email', 'facebook_link', 'phone_number',
+            'first_name', 'last_name', 'email', 'facebook_link', 'phone_number',
             'profile_picture', 'position')
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
         self.fields['email'].label = ''
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
         self.fields['first_name'].label = ''
+        self.fields['first_name'].required = True
         self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
         self.fields['last_name'].label = ''
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
+        self.fields['last_name'].required = True
         self.fields['phone_number'].label = ''
         self.fields['phone_number'].widget.attrs.update({'placeholder': 'Phone Number'})
+        self.fields['phone_number'].required = False
         self.fields['facebook_link'].label = ''
+        self.fields['facebook_link'].required = True
         self.fields['facebook_link'].widget.attrs.update(
             {'placeholder': 'Facebook Link', 'title': 'Enter your Facebook page link for the Messenger group'})
-        self.fields['grade'].label = ''
-        self.fields['paralelka'].label = ''
         self.fields['profile_picture'].label = ''
 
     def save(self, commit=True):
         user = super().save(commit=False)
         first_name = self.cleaned_data['first_name']
         last_name = self.cleaned_data['last_name']
-        grade = self.cleaned_data['grade']
-        paralelka = self.cleaned_data['paralelka']
-        user.username = f'{first_name}{last_name}{grade}{paralelka}'
+        user.username = f'{first_name}{last_name}{self.user.grade}{self.user.paralelka}'
         if commit:
             user.save()
         return user

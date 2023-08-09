@@ -1,0 +1,14 @@
+# TODO List:
+# TODO 2. forgotten password
+# TODO 3. edit players
+# TODO 4. list table teams (standings)
+# TODO 5. list table players
+# TODO 6. make pages for player information
+# TODO 7. make pages for team information
+# TODO 8. articles (news)
+# TODO 9. staff (admins)
+# TODO 10. customise admin panel
+# TODO 11. REST API
+# TODO 12. security
+# TODO 14. asynchronous view/s
+# TODO 15. host

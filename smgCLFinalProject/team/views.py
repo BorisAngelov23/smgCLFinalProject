@@ -65,7 +65,6 @@ class FirstFiveRequiredFormset(BaseFormSet):
             raise forms.ValidationError("You must have at least one goalkeeper")
         if transfers > 1:
             raise forms.ValidationError("You can have up to 1 transfer (must be from your grade) in your team.")
-        print(self.non_form_errors())
 
 
 @login_required

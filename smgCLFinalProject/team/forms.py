@@ -33,7 +33,7 @@ class TeamRegistrationForm(forms.ModelForm):
         self.clean()
         captain = self.instance.captain
         captain_player = Player(first_name=captain.first_name, last_name=captain.last_name, grade=captain.grade,
-                                paralelka=captain.paralelka, team=team, is_captain=True, position=captain.position, )
+                                paralelka=captain.paralelka, team=team, is_captain=True, position=captain.position, picture=captain.profile_picture)
         team.grade = captain.grade
         team.name = f"{team.grade}{''.join(team.paralelki)}"
         if captain_player.grade == 12 or captain_player.grade == 11:
@@ -92,4 +92,4 @@ class PlayerForm(forms.ModelForm):
         model = Player
         fields = ('first_name', 'last_name', 'grade', 'paralelka', 'position', 'picture')
 
-# # TODO make errors look nice, limit captain registration (8th grade 1 captain, 9th grade 2 captains, 10th grade 3 captains, 11th and 12th grade 5 captains)
+

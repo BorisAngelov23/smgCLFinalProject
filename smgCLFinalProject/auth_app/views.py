@@ -48,3 +48,8 @@ class CaptainEdit(UpdateView):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(pk=self.request.user.pk)
+
+    def get_form_kwargs(self):
+        kwargs = super(CaptainEdit, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
