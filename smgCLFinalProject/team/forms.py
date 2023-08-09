@@ -33,7 +33,8 @@ class TeamRegistrationForm(forms.ModelForm):
         self.clean()
         captain = self.instance.captain
         captain_player = Player(first_name=captain.first_name, last_name=captain.last_name, grade=captain.grade,
-                                paralelka=captain.paralelka, team=team, is_captain=True, position=captain.position, picture=captain.profile_picture)
+                                paralelka=captain.paralelka, team=team, is_captain=True, position=captain.position,
+                                picture=captain.profile_picture)
         team.grade = captain.grade
         team.name = f"{team.grade}{''.join(team.paralelki)}"
         if captain_player.grade == 12 or captain_player.grade == 11:
@@ -93,3 +94,45 @@ class PlayerForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'grade', 'paralelka', 'position', 'picture')
 
 
+class PlayerEditForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].label = ''
+        self.fields['first_name'].widget.attrs.update({'placeholder': 'First Name'})
+        self.fields['first_name'].required = True
+        self.fields['first_name'].disabled = True
+        self.fields['last_name'].label = ''
+        self.fields['last_name'].widget.attrs.update({'placeholder': 'Last Name'})
+        self.fields['last_name'].required = True
+        self.fields['last_name'].disabled = True
+        self.fields['grade'].label = ''
+        self.fields['grade'].required = True
+        self.fields['grade'].disabled = True
+        self.fields['paralelka'].label = ''
+        self.fields['paralelka'].required = True
+        self.fields['paralelka'].disabled = True
+        self.fields['position'].label = ''
+        self.fields['position'].required = True
+
+    def clean(self):
+        players = Player.objects.filter(team=self.user.team)
+        cleaned_data = super().clean()
+        transfer = False
+        for player in players:
+            if player.grade != self.user.grade or player.paralelka not in self.user.team.paralelki:
+                if transfer:
+                    raise forms.ValidationError('You can not have more than one transfer.')
+                transfer = True
+        return cleaned_data
+
+    def save(self, *args, **kwargs):
+        player = super().save(commit=False)
+        player.position = self.fields['position']
+        player.picture = self.fields['picture']
+        return player
+
+    class Meta:
+        title = 'Player'
+        model = Player
+        fields = ('first_name', 'last_name', 'grade', 'paralelka', 'position', 'picture')

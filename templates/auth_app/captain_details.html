@@ -8,7 +8,7 @@
     <main class="container" style="margin-top: 30px; font-size: 25px; text-align: center">
     {% if user.profile_picture %}
     <div>
-        <img src="{% get_media_prefix %}{{ user.profile_picture }}" alt="profile_pic" style="width: 200px; height: 200px; border-radius: 50%">
+        <img src="{% get_media_prefix %}{{ user.profile_picture }}" alt="profile_pic" style="width: 300px; height: 200px; border-radius: 50%">
     </div>
     {% else %}
     <div>
@@ -35,11 +35,14 @@
         Phone: {{user.phone}}
     </div>
         {% endif %}
+    <p>
+            <a href="{% url 'players_edit' %}" class="btn btn-primary btn-lg oval-button" style="margin-right: 20px">EDIT TEAM</a>
+            <a href="{% url 'players_extra_add' %}" class="btn btn-primary btn-lg oval-button">ADD PLAYERS</a>
+    </p>
     <div class="container">
-            <a href="{% url 'captain_edit' pk=user.pk %}" class="btn btn-primary btn-lg oval-button" style="margin-right: 20px">EDIT PROFILE</a>
-            <a href="{% url 'captain_logout' %}" class="btn btn-primary btn-lg oval-button">LOG OUT</a>
+        <a href="{% url 'captain_edit' pk=user.pk %}" class="btn btn-primary btn-lg oval-button" style="margin-right: 20px">EDIT PROFILE</a>
+        <a href="{% url 'captain_logout' %}" class="btn btn-primary btn-lg oval-button">LOG OUT</a>
     </div>
-    {# TODO add team if the user has registered one #}
     </main>
 
 {% endblock %}
