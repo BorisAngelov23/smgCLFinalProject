@@ -74,3 +74,48 @@ class ViewsIntegrationTest(TestCase):
 
         new_user = CaptainUser.objects.get(username='newuser')
         self.assertEqual(new_user.grade, '8')
+
+
+class AuthAppIntegrationTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_captain_register_view(self):
+        response = self.client.get(reverse('captain_register'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'auth_app/register.html')
+
+    def test_captain_register_submit_valid_form(self):
+        response = self.client.post(reverse('captain_register'), data={
+            'username': 'testuser',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
+            'grade': '9',
+            'paralelka': 'A',
+            'phone_number': '1234567890',
+            'facebook_link': 'https://facebook.com/testuser',
+            'position': 'MF'
+        })
+        self.assertEqual(response.status_code, 302)
+
+        new_user = CaptainUser.objects.get(username='testuser')
+        self.assertEqual(new_user.grade, '9')
+
+    def test_captain_register_submit_invalid_form(self):
+        response = self.client.post(reverse('captain_register'), data={
+            'username': 'testuser',
+            'password1': 'testpassword',
+            'password2': 'wrongpassword',
+            'grade': '13',
+            'paralelka': 'A',
+            'phone_number': '1234567890',
+            'facebook_link': 'https://facebook.com/testuser',
+            'position': 'MF'
+        })
+        self.assertEqual(response.status_code, 200)
+
+    def test_captain_login_view(self):
+        response = self.client.get(reverse('captain_login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'auth_app/login.html')

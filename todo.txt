@@ -10,5 +10,5 @@
 # TODO 10. customise admin panel
 # TODO 11. REST API
 # TODO 12. security
-# TODO 14. asynchronous view/s
-# TODO 15. host
+# TODO 13. asynchronous view/s
+# TODO 14. host
