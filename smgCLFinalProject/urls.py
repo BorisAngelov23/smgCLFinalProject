@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('smgCLFinalProject.core.urls')),
     path('', include('smgCLFinalProject.auth_app.urls')),
-    path('team/', include('smgCLFinalProject.team.urls')),
+    path('', include('smgCLFinalProject.team.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

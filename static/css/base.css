@@ -142,3 +142,18 @@ input:disabled {
     color: gray;
     border-color: #ccc;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td, tr {
+    border-collapse: collapse;
+    padding: 8px;
+    text-align: center;
+    color: white;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #0E1E5B;
+    color: white;
+}

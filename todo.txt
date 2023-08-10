@@ -1,6 +1,4 @@
 # TODO List:
-# TODO 2. forgotten password
-# TODO 3. edit players
 # TODO 4. list table teams (standings)
 # TODO 5. list table players
 # TODO 6. make pages for player information
@@ -12,3 +10,7 @@
 # TODO 12. security
 # TODO 13. asynchronous view/s
 # TODO 14. host
+
+# TODO MAKE THE SITE LOOK A LOT BETTER
+# TODO forgotten password
+# TODO last 3 games in team standings table

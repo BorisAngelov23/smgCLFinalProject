@@ -4,9 +4,9 @@ from django.forms import formset_factory, BaseFormSet
 from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, DetailView
 from smgCLFinalProject.team.forms import TeamRegistrationForm, PlayerForm, PlayerEditForm
-from smgCLFinalProject.team.models import Player
+from smgCLFinalProject.team.models import Player, Team
 
 
 class TeamRegister(CreateView, LoginRequiredMixin):
@@ -134,10 +134,10 @@ def players_edit(request):
                     for player in players]
     players_to_update = []
     if request.method == 'POST':
-        formset = FootballPlayerFormSet(request.POST, request.FILES, form_kwargs={'user': request.user}, initial=initial_data)
+        formset = FootballPlayerFormSet(request.POST, request.FILES, form_kwargs={'user': request.user},
+                                        initial=initial_data)
         formset.user = request.user
         if formset.is_valid():
-            print(request.FILES)
             for form in formset:
                 if form.is_valid:
                     form.clean()
@@ -156,3 +156,41 @@ def players_edit(request):
         formset = FootballPlayerFormSet(initial=initial_data)
 
     return render(request, 'team/edit_players.html', {'formset': formset})
+
+
+class Standings(ListView):
+    model = Team
+    template_name = 'team/standings.html'
+    context_object_name = 'teams'
+
+    def get_queryset(self):
+        return Team.objects.all().order_by('-points', '-goal_difference', '-goals_scored', 'name')
+
+
+class PlayerStandings(ListView):
+    model = Player
+    template_name = 'team/player_standings.html'
+    context_object_name = 'players'
+
+    def get_queryset(self):
+        return Player.objects.all().order_by('-goals', '-assists', 'first_name', 'last_name')
+
+
+class PlayersFromTeam(ListView):
+    model = Player
+    template_name = 'team/players_from_team.html'
+    context_object_name = 'players'
+
+    def get_queryset(self):
+        return Player.objects.filter(team=self.kwargs['pk']).order_by('-goals', '-assists', 'first_name', 'last_name')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['team'] = Team.objects.get(id=self.kwargs['pk'])
+        return context
+
+
+class PlayerDetail(DetailView):
+    model = Player
+    template_name = 'team/player_detail.html'
+    context_object_name = 'player'
