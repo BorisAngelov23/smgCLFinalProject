@@ -14,3 +14,4 @@
 # TODO MAKE THE SITE LOOK A LOT BETTER
 # TODO forgotten password
 # TODO last 3 games in team standings table
+# TODO add last or coming game in team info and player info

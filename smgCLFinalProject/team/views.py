@@ -194,3 +194,15 @@ class PlayerDetail(DetailView):
     model = Player
     template_name = 'team/player_detail.html'
     context_object_name = 'player'
+
+    def get_context_data(self, **kwargs):
+        POSITION_CHOICES = {
+            'GK': 'Goalkeeper',
+            'DF': 'Defender',
+            'MF': 'Midfielder',
+            'FW': 'Forward',
+            # Add more choices if needed
+        }
+        context = super().get_context_data(**kwargs)
+        context['position'] = POSITION_CHOICES[self.object.position]
+        return context
