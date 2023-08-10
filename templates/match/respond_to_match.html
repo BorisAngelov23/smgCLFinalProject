@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <header class="jumbotron jumbotron-fluid text-white text-center position-relative">
+        <h1 class="display-4">Respond to a match</h1>
+        <p class="lead">Your opponent has proposed a match. Accept or decline this match time and date.</p>
+        <p class="lead">You can send match proposals trough "ARRANGE MATCH" on your homepage.</p>
+    </header>
+    <main class="container" style="margin-top: 20px">
+    <div>
+        <form method="post" action="{% url 'respond_to_match' pk=match.pk%}" style="font-size: 25px">
+            <p>Match info:</p>
+            <p>Match date: {{ match.date }}</p>
+            <p>Match time: {{ match.time }}</p>
+            <p>Opponent: {{ match.team1 }}</p>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-lg oval-button" style="margin-top: 25px; margin-bottom: 25px">SUBMIT</button>
+        </form>
+    </div>
+    </main>
+{% endblock %}

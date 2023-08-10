@@ -157,3 +157,11 @@ th, td, tr {
     background-color: #0E1E5B;
     color: white;
 }
+
+.pending-match-proposal{
+    background-color: #ffdddd;
+    color: red;
+    border: 1px solid red;
+    padding: 8px;
+    margin-bottom: 10px;
+}

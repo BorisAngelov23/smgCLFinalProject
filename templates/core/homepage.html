@@ -7,20 +7,27 @@
             <h1 class="display-4">Welcome to the SMG Champions League</h1>
             <p class="lead" style="font-size: 25px">Here you can find all the latest news and updates about the tournament.</p>
             <p style="font-size: 20px">Stay tuned for the upcoming 2023/2024 season!</p>
+            {% if match %}
+            <div class="pending-match-proposal">
+                <a href="{% url 'respond_to_match' pk=match.pk %}">PENDING MATCH PROPOSAL FROM {{ match.team1 }}</a>
+            </div>
+    {% endif %}
         </div>
         {% if not user.is_authenticated %}
         <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
             <a href="{% url 'captain_register' %}" class="btn btn-primary btn-lg oval-button">REGISTER NOW</a>
         </div>
-        {% endif %}
-        {% if not user.team and user.is_authenticated %}
+        {% elif not user.team and user.is_authenticated %}
             <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
             <a href="{% url 'choose_classes' %}" class="btn btn-primary btn-lg oval-button">REGISTER TEAM</a>
         </div>
-        {% endif %}
-        {% if user.team and user.is_authenticated and not user.added_players %}
+        {% elif user.team and user.is_authenticated and not user.added_players %}
             <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
             <a href="{% url 'add_players' %}" class="btn btn-primary btn-lg oval-button">ADD PLAYERS</a>
+        </div>
+            {% else %}
+            <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
+            <a href="{% url 'arrange_match' %}" class="btn btn-primary btn-lg oval-button">ARRANGE MATCH</a>
         </div>
         {% endif %}
     </header>

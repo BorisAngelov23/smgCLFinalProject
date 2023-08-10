@@ -87,6 +87,7 @@ def players_add(request):
                         player.team = request.user.team
                         form.save()
             request.user.added_players = True
+            request.user.save()
             return redirect('homepage')
         else:
             return render(request, 'team/add_players.html', {'formset': formset})

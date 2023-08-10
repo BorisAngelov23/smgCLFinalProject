@@ -20,6 +20,9 @@ class Player(models.Model):
     clean_sheets = models.IntegerField(default=0)
     position = models.CharField(max_length=2, choices=[('', 'Position'), ('GK', 'Goalkeeper'), ('DF', 'Defender'), ('MF', 'Midfielder'), ('FW', 'Forward')], default='', null=False, blank=False)
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 class Team(models.Model):
     captain = models.OneToOneField(CaptainUser, on_delete=models.CASCADE, related_name='team', default=None)
@@ -35,3 +38,6 @@ class Team(models.Model):
     draws = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
     last_three_games = ArrayField(base_field=models.CharField(max_length=1), size=3, default=list, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
