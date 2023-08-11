@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, UpdateView
+from django.views.generic import TemplateView, CreateView, UpdateView, ListView
 
 from .forms import ArrangeMatchForm, MatchResponseForm
 from .models import Match
@@ -32,8 +32,7 @@ class ArrangeMatch(CreateView):
 class MatchResponse(UpdateView):
     form_class = MatchResponseForm
     template_name = 'match/respond_to_match.html'
-    # TODO change success_url to matches page
-    success_url = reverse_lazy('homepage')
+    success_url = reverse_lazy('matches')
 
     def get_queryset(self):
         return Match.objects.filter(team2=self.request.user.team, status='pending')
@@ -42,3 +41,12 @@ class MatchResponse(UpdateView):
         context = super().get_context_data(**kwargs)
         context['match'] = Match.objects.filter(team2=self.request.user.team, status='pending').first()
         return context
+
+
+class AllMatchesList(ListView):
+    model = Match
+    template_name = 'match/matches.html'
+    context_object_name = 'matches'
+
+    def get_queryset(self):
+        return Match.objects.filter()

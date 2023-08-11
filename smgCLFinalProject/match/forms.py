@@ -21,13 +21,22 @@ class ArrangeMatchForm(forms.ModelForm):
         match_time = cleaned_data.get('time')
         team2 = cleaned_data.get('team2')
 
-        if Match.objects.filter(team1=team2, team2=self.user.team).exists() or Match.objects.filter(team1=self.user.team, team2=team2).exists():
+        if team2 == self.user.team:
+            raise forms.ValidationError(
+                "You cannot arrange a match with yourself."
+            )
+        if Match.objects.filter(team1=team2, team2=self.user.team).exists() or Match.objects.filter(
+                team1=self.user.team, team2=team2).exists():
             raise forms.ValidationError(
                 "You already have a match with this team."
             )
         if Match.objects.filter(date=match_date, time=match_time, team2=team2).exists():
             raise forms.ValidationError(
                 "You already have a match at that date and time with that opponent."
+            )
+        if Match.objects.filter(date=match_date, time=match_time).exists():
+            raise forms.ValidationError(
+                "There is already a match at that date and time."
             )
         if match_date < timezone.now().date():
             raise forms.ValidationError(

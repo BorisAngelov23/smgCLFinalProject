@@ -16,6 +16,7 @@
                 <th scope="col">Assists</th>
                 <th scope="col">Y/R cards</th>
                 <th scope="col">Played</th>
+                <th scope="col">MVPs</th>
             </tr>
             </thead>
             <tbody>
@@ -28,6 +29,7 @@
                     <td>{{ player.assists }}</td>
                     <td>{{ player.yellow_cards }}/{{ player.red_cards }}</td>
                     <td>{{ player.games_played }}</td>
+                    <td>{{ player.mvps }}</td>
                 </tr>
             {% endfor %}
             </tbody>

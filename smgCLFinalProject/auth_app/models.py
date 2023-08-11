@@ -15,3 +15,4 @@ class CaptainUser(AbstractUser):
     position = models.CharField(max_length=2, choices=[('', 'Position'), ('GK', 'Goalkeeper'), ('DF', 'Defender'),
                                                        ('MF', 'Midfielder'), ('FW', 'Forward')], default='')
     added_players = models.BooleanField(default=False)
+
