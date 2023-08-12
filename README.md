@@ -1,54 +1,54 @@
-SMG Champions League
-The SMG Champions League is a web application that organizes and manages a football tournament between the classes of each grade at Sofia High School of Mathematics. Each class is represented by a Bulgarian letter (А, Б, В, Г, Д, Е), and each grade from 8th to 12th has six classes.
+# SMG Champions League
 
-Features
-The web application provides the following features:
+Welcome to the SMG Champions League project! This project is designed to manage and showcase information related to a football league, including matches, teams, players, news, and more.
 
-User Registration: Students can register on the website as team captains. During registration, they provide their first name, last name, phone number, Facebook link, grade, and class. The username is automatically generated based on the provided information.
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-Team Creation: After registration, team captains can create their football teams. They need to add the names of three players, along with a picture, position, and grade-class. The team captain can create a team for their specific class or join with other classes as per the rules.
+## Project Overview
+The SMG Champions League project aims to provide a comprehensive platform for football enthusiasts to stay updated with the latest news, view match details, check team standings, and more. The project is built using Django and leverages various technologies to deliver a user-friendly experience.
 
-Team Matches and Results: The website displays the standings, results, and schedule of matches for each grade and class.
+## Features
+- **News:** Browse the latest news articles related to the league.
+- **Match Management:** View upcoming and played matches, with collapsible match details.
+- **Standings:** Check the current standings of teams.
+- **Team and Player Profiles:** Explore team and player profiles, including statistics.
+- **User Authentication:** Register as a team captain, log in, and manage your team.
 
-Team of the Week: The website features a "Team of the Week" section, where the best-performing team of the week is highlighted.
+## Installation
+1. Clone this repository using `git clone https://github.com/your-username/your-project.git`.
+2. Navigate to the project directory: `cd your-project`.
+3. Install required dependencies using `pip install -r requirements.txt`.
+4. Configure the database settings in `settings.py`.
+5. Run database migrations: `python manage.py migrate`.
+6. Start the development server: `python manage.py runserver`.
 
-Installation
-Clone the repository:
-bash
-Copy code
-git clone https://github.com/your-username/smg-champions-league.git
-cd smg-champions-league
-Install the required dependencies:
-bash
-Copy code
-pip install -r requirements.txt
-Set up the database and run migrations:
-bash
-Copy code
-python manage.py migrate
-Create a superuser to access the Django admin:
-bash
-Copy code
-python manage.py createsuperuser
-Run the development server:
-bash
-Copy code
-python manage.py runserver
-The web application should now be accessible at http://127.0.0.1:8000/.
+## Usage
+1. Access the application by visiting `http://localhost:8000` in your web browser.
+2. Browse the various sections to explore news, matches, teams, players, and more.
+3. Register as a team captain to manage your team's profile and players.
 
-Usage
-Access the website through your browser and register as a team captain using the provided registration form.
+## Technologies Used
+- Django: A high-level Python web framework for rapid development.
+- Django REST framework: A powerful toolkit for building Web APIs.
+- Bootstrap: A front-end framework for creating responsive and visually appealing designs.
+- JavaScript: Used for interactivity, collapsible match details, and carousel.
+- Bleach: A tool for sanitizing and cleaning user-generated content.
+- ... (Add any additional technologies used)
 
-After registration, log in with your credentials and navigate to the "Create Team" section to create your football team.
+## Contributing
+We welcome contributions from the community! If you'd like to contribute to the project, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix: `git checkout -b feature-name`.
+3. Make your changes and commit them with descriptive messages: `git commit -m "Add feature"`.
+4. Push your changes to your fork: `git push origin feature-name`.
+5. Create a pull request to the original repository.
 
-Provide the required information for your team members and create the team.
-
-View the standings, match results, and other information from the homepage.
-
-Log out when you're done.
-
-Contributing
-Contributions to the SMG Champions League project are welcome! If you find any issues or have ideas for improvements, feel free to open an issue or submit a pull request.
-
-License
-The SMG Champions League project is licensed under the MIT License. You can find the full license text in the LICENSE file.
+## License
+This project is licensed under the [MIT License](LICENSE).
