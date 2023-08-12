@@ -168,10 +168,10 @@ th, td, tr {
 
 
 .collapsible {
-  background-color: #3562A6;
+  background-color: transparent;
   color: white;
   cursor: pointer;
-  padding: 18px;
+  padding: 5px;
   width: 100%;
   border: none;
   text-align: left;
@@ -180,7 +180,7 @@ th, td, tr {
 }
 
 .active, .collapsible:hover {
-  background-color: #555;
+  background-color: #0E1E5B;
 }
 
 .collapsible:after {
@@ -263,5 +263,3 @@ ul {
 .back-to-list:hover {
     color: #0056b3;
 }
-
-
