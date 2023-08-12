@@ -1,17 +1,15 @@
 # TODO List:
-# TODO 1. matches
-# TODO 2. articles (news)
-# TODO 3. staff (admins)
-# TODO 4. customise admin panel
-# TODO 5. REST API
-# TODO 6. security
-# TODO 7. asynchronous view/s
+# TODO 2. articles (news) - + 1 more admin group
 # TODO 8. host
 
-# TODO MAKE THE SITE LOOK A LOT BETTER
+# TODO MAKE THE SITE LOOK A LOT BETTER and order your frontend code
 # TODO OPTIMISE THE CODE
+# TODO SECURITY
+# TODO send thanks for registration email
 # TODO forgotten password
 # TODO last 3 games in team standings table
+# TODO add upcoming matches in matches page
+# TODO use player pics more
 # TODO add last or coming game in team info and player info
 # TODO menu on smartphone
 # TODO add my matches in profile details + team management (combine edit team, add players and my matches)
