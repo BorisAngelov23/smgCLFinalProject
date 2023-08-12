@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('smgCLFinalProject.auth_app.urls')),
     path('', include('smgCLFinalProject.team.urls')),
     path('matches/', include('smgCLFinalProject.match.urls')),
+    path('news/', include('smgCLFinalProject.article.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

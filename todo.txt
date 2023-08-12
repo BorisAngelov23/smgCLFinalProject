@@ -1,10 +1,10 @@
 # TODO List:
-# TODO 2. articles (news) - + 1 more admin group
 # TODO 8. host
 
 # TODO MAKE THE SITE LOOK A LOT BETTER and order your frontend code
 # TODO OPTIMISE THE CODE
 # TODO SECURITY
+# TODO add footer
 # TODO send thanks for registration email
 # TODO forgotten password
 # TODO last 3 games in team standings table
