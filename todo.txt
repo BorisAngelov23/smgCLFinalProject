@@ -9,11 +9,9 @@
 # TODO send thanks for registration email
 # TODO forgotten password
 # TODO last 3 games in team standings table
-# TODO add upcoming matches in matches page
 # TODO use player pics more (add them to the table)
 # TODO add last or coming game in team info and player info
 # TODO menu on smartphone
 # TODO add my matches in profile details + team management (combine edit team, add players and my matches)
 # TODO when choosing mvp, queryset of players from the teams which have played the match
 # TODO add homepage login button above register button
-# TODO create page not found page
