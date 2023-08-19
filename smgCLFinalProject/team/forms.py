@@ -132,7 +132,7 @@ class PlayerForm(forms.ModelForm):
                     raise forms.ValidationError(
                         "No transfers allowed for teams from 8th, 9th and 10th grade."
                     )
-            if self.user.grade == '11' or self.user.grade == '10':
+            if self.user.grade == '11' or self.user.grade == '12':
                 transfer = False
                 for player in players:
                     if (

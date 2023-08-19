@@ -4,3 +4,4 @@ postgresql
 *.gif
 *.jpeg
 .env
+*.pyc
