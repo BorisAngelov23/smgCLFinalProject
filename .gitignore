@@ -1,2 +1,6 @@
 postgresql
 *.jpg
+*.png
+*.gif
+*.jpeg
+.env

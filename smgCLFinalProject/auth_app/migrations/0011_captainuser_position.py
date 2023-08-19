@@ -4,15 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('auth_app', '0010_remove_captainuser_captain_team'),
+        ("auth_app", "0010_remove_captainuser_captain_team"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='captainuser',
-            name='position',
-            field=models.CharField(choices=[('', 'Position'), ('GK', 'Goalkeeper'), ('DF', 'Defender'), ('MF', 'Midfielder'), ('FW', 'Forward')], default='', max_length=2),
+            model_name="captainuser",
+            name="position",
+            field=models.CharField(
+                choices=[
+                    ("", "Position"),
+                    ("GK", "Goalkeeper"),
+                    ("DF", "Defender"),
+                    ("MF", "Midfielder"),
+                    ("FW", "Forward"),
+                ],
+                default="",
+                max_length=2,
+            ),
         ),
     ]

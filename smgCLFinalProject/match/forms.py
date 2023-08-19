@@ -11,22 +11,27 @@ class ArrangeMatchForm(forms.ModelForm):
     # time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'timepicker'}))
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
+        self.user = kwargs.pop("user")
         super().__init__(*args, **kwargs)
-        self.fields['team2'].label = 'Opponent'
+        self.fields["team2"].label = "Opponent"
 
     def clean(self):
         cleaned_data = super().clean()
-        match_date = cleaned_data.get('date')
-        match_time = cleaned_data.get('time')
-        team2 = cleaned_data.get('team2')
+        match_date = cleaned_data.get("date")
+        match_time = cleaned_data.get("time")
+        team2 = cleaned_data.get("team2")
 
         if team2 == self.user.team:
             raise forms.ValidationError(
-                "You cannot arrange a match with yourself."
-            )
-        if Match.objects.filter(team1=team2, team2=self.user.team, date=match_date).exists() or Match.objects.filter(
-                team1=self.user.team, team2=team2, date=match_date).exists():
+                "You cannot arrange a match with yourself.")
+        if (
+            Match.objects.filter(
+                team1=team2, team2=self.user.team, date=match_date
+            ).exists()
+            or Match.objects.filter(
+                team1=self.user.team, team2=team2, date=match_date
+            ).exists()
+        ):
             raise forms.ValidationError(
                 "You already have a match with this team on this day."
             )
@@ -40,12 +45,10 @@ class ArrangeMatchForm(forms.ModelForm):
             )
         if match_date < timezone.now().date():
             raise forms.ValidationError(
-                "You cannot arrange a match in the past."
-            )
+                "You cannot arrange a match in the past.")
         if match_date == timezone.now().date() and match_time < timezone.now().time():
             raise forms.ValidationError(
-                "You cannot arrange a match in the past."
-            )
+                "You cannot arrange a match in the past.")
         if match_time < time(7, 30) or match_time > time(19, 10):
             raise forms.ValidationError(
                 "You cannot arrange a match before 7:30 or after 19:10."
@@ -57,16 +60,18 @@ class ArrangeMatchForm(forms.ModelForm):
 
     class Meta:
         model = Match
-        fields = ('date', 'time', 'team2')
+        fields = ("date", "time", "team2")
 
 
 class MatchResponseForm(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['status'].label = 'Response'
-        self.fields['status'].choices = [('accepted', 'Accept'), ('declined', 'Decline')]
+        self.fields["status"].label = "Response"
+        self.fields["status"].choices = [
+            ("accepted", "Accept"),
+            ("declined", "Decline"),
+        ]
 
     class Meta:
         model = Match
-        fields = ('status',)
+        fields = ("status",)

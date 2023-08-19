@@ -4,25 +4,45 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('auth_app', '0002_alter_captainuser_paralelka'),
+        ("auth_app", "0002_alter_captainuser_paralelka"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='captainuser',
-            name='facebook_link',
+            model_name="captainuser",
+            name="facebook_link",
             field=models.URLField(null=True),
         ),
         migrations.AlterField(
-            model_name='captainuser',
-            name='grade',
-            field=models.CharField(choices=[('', 'Grade'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12')], max_length=2),
+            model_name="captainuser",
+            name="grade",
+            field=models.CharField(
+                choices=[
+                    ("", "Grade"),
+                    ("8", "8"),
+                    ("9", "9"),
+                    ("10", "10"),
+                    ("11", "11"),
+                    ("12", "12"),
+                ],
+                max_length=2,
+            ),
         ),
         migrations.AlterField(
-            model_name='captainuser',
-            name='paralelka',
-            field=models.CharField(choices=[('', 'Class'), ('A', 'A'), ('B', 'B'), ('V', 'V'), ('G', 'G'), ('D', 'D'), ('E', 'E')], max_length=1),
+            model_name="captainuser",
+            name="paralelka",
+            field=models.CharField(
+                choices=[
+                    ("", "Class"),
+                    ("A", "A"),
+                    ("B", "B"),
+                    ("V", "V"),
+                    ("G", "G"),
+                    ("D", "D"),
+                    ("E", "E"),
+                ],
+                max_length=1,
+            ),
         ),
     ]

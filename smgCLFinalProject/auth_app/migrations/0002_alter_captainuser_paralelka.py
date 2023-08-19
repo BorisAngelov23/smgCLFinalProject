@@ -4,15 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('auth_app', '0001_initial'),
+        ("auth_app", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='captainuser',
-            name='paralelka',
-            field=models.CharField(choices=[('A', 'A'), ('B', 'B'), ('V', 'V'), ('G', 'G'), ('D', 'D'), ('E', 'E')], max_length=1),
+            model_name="captainuser",
+            name="paralelka",
+            field=models.CharField(
+                choices=[
+                    ("A", "A"),
+                    ("B", "B"),
+                    ("V", "V"),
+                    ("G", "G"),
+                    ("D", "D"),
+                    ("E", "E"),
+                ],
+                max_length=1,
+            ),
         ),
     ]

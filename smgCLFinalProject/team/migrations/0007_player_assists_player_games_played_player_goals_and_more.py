@@ -4,40 +4,49 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('team', '0006_player_is_captain'),
+        ("team", "0006_player_is_captain"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='player',
-            name='assists',
+            model_name="player",
+            name="assists",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='player',
-            name='games_played',
+            model_name="player",
+            name="games_played",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='player',
-            name='goals',
+            model_name="player",
+            name="goals",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='player',
-            name='position',
-            field=models.CharField(choices=[('', 'Position'), ('GK', 'Goalkeeper'), ('DF', 'Defender'), ('MF', 'Midfielder'), ('FW', 'Forward')], default='', max_length=2),
+            model_name="player",
+            name="position",
+            field=models.CharField(
+                choices=[
+                    ("", "Position"),
+                    ("GK", "Goalkeeper"),
+                    ("DF", "Defender"),
+                    ("MF", "Midfielder"),
+                    ("FW", "Forward"),
+                ],
+                default="",
+                max_length=2,
+            ),
         ),
         migrations.AddField(
-            model_name='player',
-            name='red_cards',
+            model_name="player",
+            name="red_cards",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='player',
-            name='yellow_cards',
+            model_name="player",
+            name="yellow_cards",
             field=models.IntegerField(default=0),
         ),
     ]

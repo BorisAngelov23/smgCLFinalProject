@@ -6,43 +6,117 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('team', '0001_initial'),
+        ("team", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='team',
-            name='captain',
-            field=models.OneToOneField(default=None, on_delete=django.db.models.deletion.CASCADE, related_name='team', to=settings.AUTH_USER_MODEL),
+            model_name="team",
+            name="captain",
+            field=models.OneToOneField(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="team",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddField(
-            model_name='team',
-            name='grade',
-            field=models.CharField(choices=[('', 'Grade'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12')], default=None, max_length=2),
+            model_name="team",
+            name="grade",
+            field=models.CharField(
+                choices=[
+                    ("", "Grade"),
+                    ("8", "8"),
+                    ("9", "9"),
+                    ("10", "10"),
+                    ("11", "11"),
+                    ("12", "12"),
+                ],
+                default=None,
+                max_length=2,
+            ),
         ),
         migrations.AddField(
-            model_name='team',
-            name='paralelki',
-            field=models.CharField(choices=[('', 'Class'), ('A', 'A'), ('B', 'B'), ('V', 'V'), ('G', 'G'), ('D', 'D'), ('E', 'E')], default=None, max_length=3),
+            model_name="team",
+            name="paralelki",
+            field=models.CharField(
+                choices=[
+                    ("", "Class"),
+                    ("A", "A"),
+                    ("B", "B"),
+                    ("V", "V"),
+                    ("G", "G"),
+                    ("D", "D"),
+                    ("E", "E"),
+                ],
+                default=None,
+                max_length=3,
+            ),
         ),
         migrations.AddField(
-            model_name='team',
-            name='team_name',
+            model_name="team",
+            name="team_name",
             field=models.CharField(default=None, max_length=8, unique=True),
         ),
         migrations.CreateModel(
-            name='Player',
+            name="Player",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=20)),
-                ('last_name', models.CharField(max_length=20)),
-                ('grade', models.CharField(choices=[('', 'Grade'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12')], max_length=2)),
-                ('paralelka', models.CharField(choices=[('', 'Class'), ('A', 'A'), ('B', 'B'), ('V', 'V'), ('G', 'G'), ('D', 'D'), ('E', 'E')], max_length=1)),
-                ('picture', models.ImageField(blank=True, null=True, upload_to='player_pictures')),
-                ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='players', to='team.team')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=20)),
+                ("last_name", models.CharField(max_length=20)),
+                (
+                    "grade",
+                    models.CharField(
+                        choices=[
+                            ("", "Grade"),
+                            ("8", "8"),
+                            ("9", "9"),
+                            ("10", "10"),
+                            ("11", "11"),
+                            ("12", "12"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "paralelka",
+                    models.CharField(
+                        choices=[
+                            ("", "Class"),
+                            ("A", "A"),
+                            ("B", "B"),
+                            ("V", "V"),
+                            ("G", "G"),
+                            ("D", "D"),
+                            ("E", "E"),
+                        ],
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "picture",
+                    models.ImageField(
+                        blank=True, null=True, upload_to="player_pictures"
+                    ),
+                ),
+                (
+                    "team",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="players",
+                        to="team.team",
+                    ),
+                ),
             ],
         ),
     ]

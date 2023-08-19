@@ -28,6 +28,9 @@
                 <th scope="col">Team</th>
                 <th scope="col">Goals</th>
                 <th scope="col">Assists</th>
+                {% if player.position == 'GK' %}
+                <th scope="col">Clean sheets</th>
+                {% endif %}
                 <th scope="col">Y/R cards</th>
                 <th scope="col">Played</th>
             </tr>
@@ -38,6 +41,9 @@
                     <td>{{ player.team.name }}</td>
                     <td>{{ player.goals }}</td>
                     <td>{{ player.assists }}</td>
+                    {% if player.position == 'GK' %}
+                    <td>{{ player.clean_sheets }}</td>
+                    {% endif %}
                     <td>{{ player.yellow_cards }}/{{ player.red_cards }}</td>
                     <td>{{ player.games_played }}</td>
                 </tr>

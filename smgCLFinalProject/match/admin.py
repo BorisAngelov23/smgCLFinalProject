@@ -12,7 +12,7 @@ class MatchAdmin(admin.ModelAdmin):
 
     def save_related(self, request, form, formsets, change):
         super().save_related(request, form, formsets, change)
-        if form.instance.status != 'declined':
+        if form.instance.status != "declined":
             players_stats = form.instance.matchplayerstats_set.all()
             for player_stat in players_stats:
                 player = player_stat.player

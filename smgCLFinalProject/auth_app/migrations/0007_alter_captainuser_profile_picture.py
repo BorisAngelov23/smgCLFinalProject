@@ -5,15 +5,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('auth_app', '0006_alter_captainuser_profile_picture'),
+        ("auth_app", "0006_alter_captainuser_profile_picture"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='captainuser',
-            name='profile_picture',
-            field=models.ImageField(blank=True, null=True, storage=django.core.files.storage.FileSystemStorage(location='/media/profile_pictures/'), upload_to=''),
+            model_name="captainuser",
+            name="profile_picture",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                storage=django.core.files.storage.FileSystemStorage(
+                    location="/media/profile_pictures/"
+                ),
+                upload_to="",
+            ),
         ),
     ]

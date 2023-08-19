@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('team', '0005_alter_team_paralelki'),
+        ("team", "0005_alter_team_paralelki"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='player',
-            name='is_captain',
+            model_name="player",
+            name="is_captain",
             field=models.BooleanField(default=False),
         ),
     ]

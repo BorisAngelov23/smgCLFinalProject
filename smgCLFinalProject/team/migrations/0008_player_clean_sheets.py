@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('team', '0007_player_assists_player_games_played_player_goals_and_more'),
+        ("team", "0007_player_assists_player_games_played_player_goals_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='player',
-            name='clean_sheets',
+            model_name="player",
+            name="clean_sheets",
             field=models.IntegerField(default=0),
         ),
     ]

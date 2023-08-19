@@ -5,50 +5,55 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('team', '0010_alter_team_paralelki'),
+        ("team", "0010_alter_team_paralelki"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='team',
-            name='draws',
+            model_name="team",
+            name="draws",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='team',
-            name='games_played',
+            model_name="team",
+            name="games_played",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='team',
-            name='goals_conceded',
+            model_name="team",
+            name="goals_conceded",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='team',
-            name='goals_scored',
+            model_name="team",
+            name="goals_scored",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='team',
-            name='last_three_games',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=1), blank=True, default=list, null=True, size=3),
+            model_name="team",
+            name="last_three_games",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.CharField(max_length=1),
+                blank=True,
+                default=list,
+                null=True,
+                size=3,
+            ),
         ),
         migrations.AddField(
-            model_name='team',
-            name='losses',
+            model_name="team",
+            name="losses",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='team',
-            name='points',
+            model_name="team",
+            name="points",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='team',
-            name='wins',
+            model_name="team",
+            name="wins",
             field=models.IntegerField(default=0),
         ),
     ]

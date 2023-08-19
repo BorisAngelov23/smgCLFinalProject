@@ -5,81 +5,103 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('team', '0013_player_mvps'),
-        ('match', '0004_match_mvp_match_team1_goals_match_team2_goals_and_more'),
+        ("team", "0013_player_mvps"),
+        ("match", "0004_match_mvp_match_team1_goals_match_team2_goals_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MatchPlayerStats',
+            name="MatchPlayerStats",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('goals_scored', models.PositiveIntegerField(default=0)),
-                ('assists', models.PositiveIntegerField(default=0)),
-                ('yellow_cards', models.PositiveIntegerField(default=0)),
-                ('red_cards', models.PositiveIntegerField(default=0)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("goals_scored", models.PositiveIntegerField(default=0)),
+                ("assists", models.PositiveIntegerField(default=0)),
+                ("yellow_cards", models.PositiveIntegerField(default=0)),
+                ("red_cards", models.PositiveIntegerField(default=0)),
             ],
         ),
         migrations.RemoveField(
-            model_name='goal',
-            name='match',
+            model_name="goal",
+            name="match",
         ),
         migrations.RemoveField(
-            model_name='goal',
-            name='player',
+            model_name="goal",
+            name="player",
         ),
         migrations.RemoveField(
-            model_name='redcard',
-            name='match',
+            model_name="redcard",
+            name="match",
         ),
         migrations.RemoveField(
-            model_name='redcard',
-            name='player',
+            model_name="redcard",
+            name="player",
         ),
         migrations.RemoveField(
-            model_name='yellowcard',
-            name='match',
+            model_name="yellowcard",
+            name="match",
         ),
         migrations.RemoveField(
-            model_name='yellowcard',
-            name='player',
+            model_name="yellowcard",
+            name="player",
         ),
         migrations.AlterModelOptions(
-            name='match',
-            options={'ordering': ('date', 'time'), 'verbose_name_plural': 'matches'},
+            name="match",
+            options={"ordering": ("date", "time"),
+                     "verbose_name_plural": "matches"},
         ),
         migrations.AlterField(
-            model_name='match',
-            name='mvp',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='match_mvp', to='team.player'),
+            model_name="match",
+            name="mvp",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="match_mvp",
+                to="team.player",
+            ),
         ),
         migrations.DeleteModel(
-            name='Assist',
+            name="Assist",
         ),
         migrations.DeleteModel(
-            name='Goal',
+            name="Goal",
         ),
         migrations.DeleteModel(
-            name='RedCard',
+            name="RedCard",
         ),
         migrations.DeleteModel(
-            name='YellowCard',
+            name="YellowCard",
         ),
         migrations.AddField(
-            model_name='matchplayerstats',
-            name='match',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='match.match'),
+            model_name="matchplayerstats",
+            name="match",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="match.match"
+            ),
         ),
         migrations.AddField(
-            model_name='matchplayerstats',
-            name='player',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='team.player'),
+            model_name="matchplayerstats",
+            name="player",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="team.player"
+            ),
         ),
         migrations.AddField(
-            model_name='match',
-            name='player_stats',
-            field=models.ManyToManyField(related_name='match_player_stats', through='match.MatchPlayerStats', to='team.player'),
+            model_name="match",
+            name="player_stats",
+            field=models.ManyToManyField(
+                related_name="match_player_stats",
+                through="match.MatchPlayerStats",
+                to="team.player",
+            ),
         ),
     ]

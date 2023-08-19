@@ -14,13 +14,13 @@ from rest_framework import serializers
 
 
 class MatchRequestSent(TemplateView, LoginRequiredMixin):
-    template_name = 'match/match_request_sent.html'
+    template_name = "match/match_request_sent.html"
 
 
 class ArrangeMatch(CreateView, LoginRequiredMixin):
     form_class = ArrangeMatchForm
-    template_name = 'match/arrange_match.html'
-    success_url = reverse_lazy('match_request_sent')
+    template_name = "match/arrange_match.html"
+    success_url = reverse_lazy("match_request_sent")
 
     def form_valid(self, form):
         match = form.save(commit=False)
@@ -30,21 +30,23 @@ class ArrangeMatch(CreateView, LoginRequiredMixin):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs["user"] = self.request.user
         return kwargs
 
 
 class MatchResponse(UpdateView, LoginRequiredMixin):
     form_class = MatchResponseForm
-    template_name = 'match/respond_to_match.html'
-    success_url = reverse_lazy('matches')
+    template_name = "match/respond_to_match.html"
+    success_url = reverse_lazy("matches")
 
     def get_queryset(self):
-        return Match.objects.filter(team2=self.request.user.team, status='pending')
+        return Match.objects.filter(team2=self.request.user.team, status="pending")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['match'] = Match.objects.filter(team2=self.request.user.team, status='pending').first()
+        context["match"] = Match.objects.filter(
+            team2=self.request.user.team, status="pending"
+        ).first()
         return context
 
 
@@ -54,7 +56,7 @@ class MatchPlayerStatsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MatchPlayerStats
-        fields = ['player_name', 'goals_scored', 'player_id']
+        fields = ["player_name", "goals_scored", "player_id"]
 
     def get_player_name(self, obj):
         return str(obj.player)
@@ -71,9 +73,9 @@ class MatchGoalscorersView(APIView):
 
 
 class MatchesTemplateView(TemplateView):
-    template_name = 'match/matches.html'
+    template_name = "match/matches.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['matches'] = Match.objects.all()
+        context["matches"] = Match.objects.all()
         return context

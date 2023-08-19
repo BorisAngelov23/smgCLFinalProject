@@ -10,8 +10,8 @@ from smgCLFinalProject.auth_app.models import CaptainUser
 
 class CaptainRegister(CreateView):
     form_class = CaptainRegistrationForm
-    template_name = 'auth_app/register.html'
-    success_url = reverse_lazy('choose_classes')
+    template_name = "auth_app/register.html"
+    success_url = reverse_lazy("choose_classes")
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -20,7 +20,7 @@ class CaptainRegister(CreateView):
 
 
 class CaptainLogin(LoginView):
-    template_name = 'auth_app/login.html'
+    template_name = "auth_app/login.html"
     form_class = AuthenticationForm
 
 
@@ -29,7 +29,7 @@ class CaptainLogout(LogoutView):
 
 
 class CaptainDetails(DetailView):
-    template_name = 'auth_app/captain_details.html'
+    template_name = "auth_app/captain_details.html"
     model = CaptainUser
 
     def get_queryset(self):
@@ -40,10 +40,10 @@ class CaptainDetails(DetailView):
 class CaptainEdit(UpdateView):
     model = CaptainUser
     form_class = CaptainEditForm
-    template_name = 'auth_app/captain_edit.html'
+    template_name = "auth_app/captain_edit.html"
 
     def get_success_url(self):
-        return reverse_lazy('captain_details', kwargs={'pk': self.object.pk})
+        return reverse_lazy("captain_details", kwargs={"pk": self.object.pk})
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -51,5 +51,5 @@ class CaptainEdit(UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(CaptainEdit, self).get_form_kwargs()
-        kwargs['user'] = self.request.user
+        kwargs["user"] = self.request.user
         return kwargs

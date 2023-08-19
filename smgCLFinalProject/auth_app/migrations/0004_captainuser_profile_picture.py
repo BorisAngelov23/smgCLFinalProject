@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('auth_app', '0003_captainuser_facebook_link_alter_captainuser_grade_and_more'),
+        ("auth_app", "0003_captainuser_facebook_link_alter_captainuser_grade_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='captainuser',
-            name='profile_picture',
-            field=models.ImageField(blank=True, null=True, upload_to='profile_pictures'),
+            model_name="captainuser",
+            name="profile_picture",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="profile_pictures"
+            ),
         ),
     ]

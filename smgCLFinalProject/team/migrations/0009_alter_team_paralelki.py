@@ -5,15 +5,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('team', '0008_player_clean_sheets'),
+        ("team", "0008_player_clean_sheets"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='team',
-            name='paralelki',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=1), blank=True, default=list, null=True, size=3),
+            model_name="team",
+            name="paralelki",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.CharField(max_length=1),
+                blank=True,
+                default=list,
+                null=True,
+                size=3,
+            ),
         ),
     ]

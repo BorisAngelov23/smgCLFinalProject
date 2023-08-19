@@ -10,7 +10,7 @@
     </header>
     <main class="container" style="margin-top: 20px">
     <div>
-        <form method="post" action="{% url 'add_players' %}" style="font-size: 25px">
+        <form method="post" action="{% url 'add_players' %}" style="font-size: 25px" enctype="multipart/form-data">
             {% csrf_token %}
         {% if formset.non_form_errors %}
             {% for error in formset.non_form_errors %}
