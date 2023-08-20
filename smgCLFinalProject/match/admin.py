@@ -1,13 +1,24 @@
 from django.contrib import admin
 from .models import Match, MatchPlayerStats
+from .forms import MatchForm
 
 
 class MatchPlayerStatsInline(admin.TabularInline):
     model = MatchPlayerStats
-    extra = 0
+    extra = 1
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        if obj:
+            team1_players = obj.team1.players.all()
+            team2_players = obj.team2.players.all()
+            valid_players = team1_players | team2_players
+            formset.form.base_fields["player"].queryset = valid_players
+        return formset
 
 
 class MatchAdmin(admin.ModelAdmin):
+    form = MatchForm
     inlines = [MatchPlayerStatsInline]
 
     def save_related(self, request, form, formsets, change):

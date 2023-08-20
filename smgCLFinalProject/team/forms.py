@@ -44,6 +44,13 @@ class TeamRegistrationForm(forms.ModelForm):
         team = super().save(commit=False)
         self.clean()
         captain = self.instance.captain
+        team.grade = captain.grade
+        if captain.grade == '8':
+            team.paralelki = ["A", "B", "V", "G", "D", "E"]
+            team.name = f"8sboren"
+        else:
+            team.name = f"{team.grade}{''.join(team.paralelki)}"
+
         captain_player = Player(
             first_name=captain.first_name,
             last_name=captain.last_name,
@@ -54,13 +61,7 @@ class TeamRegistrationForm(forms.ModelForm):
             position=captain.position,
             picture=captain.profile_picture,
         )
-        team.grade = captain.grade
-        team.name = f"{team.grade}{''.join(team.paralelki)}"
-        if captain_player.grade == 12 or captain_player.grade == 11:
-            team.paralelki = [captain_player.paralelka]
-        elif captain_player.grade == 8:
-            team.paralelki = ["A", "B", "V", "G", "D", "E"]
-            team.name = f"8sboren"
+
         if commit:
             team.save()
             if not self.captain_player_created:
@@ -96,7 +97,6 @@ class PlayerForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        print(cleaned_data)
         fn = cleaned_data.get("first_name")
         ln = cleaned_data.get("last_name")
         paralelka = cleaned_data.get("paralelka")

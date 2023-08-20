@@ -19,6 +19,9 @@
             {% for form in formset %}
                 <hr>
                 <p>Player {{ forloop.counter }}</p>
+{#                {% if player.picture %}#}
+{#                    <img src="{{ player.picture }}" alt="Player picture" style="width: 100px; height: 100px">#}
+{#                {% endif %}#}
                 {{ form.as_p }}
             {% endfor %}
         <hr>

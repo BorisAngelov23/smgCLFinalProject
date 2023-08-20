@@ -158,6 +158,7 @@ def players_edit(request):
             "grade": player.grade,
             "paralelka": player.paralelka,
             "position": player.position,
+            # "picture": player.picture,
         }
         for player in players
     ]

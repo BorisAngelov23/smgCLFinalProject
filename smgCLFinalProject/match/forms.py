@@ -75,3 +75,13 @@ class MatchResponseForm(forms.ModelForm):
     class Meta:
         model = Match
         fields = ("status",)
+
+
+class MatchForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance:
+            team1_players = self.instance.team1.players.all()
+            team2_players = self.instance.team2.players.all()
+            valid_players = team1_players | team2_players
+            self.fields['mvp'].queryset = valid_players
