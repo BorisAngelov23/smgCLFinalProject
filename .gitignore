@@ -3,5 +3,5 @@ postgresql
 *.png
 *.gif
 *.jpeg
-.env
+*.env
 *.pyc
