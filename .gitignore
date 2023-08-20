@@ -1,9 +1,8 @@
 postgresql
-envs
 *.jpg
 *.png
 *.gif
 *.jpeg
 *.env
 *.pyc
-envs/.env
+todo.txt

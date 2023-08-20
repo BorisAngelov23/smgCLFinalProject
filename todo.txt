@@ -1,12 +1,9 @@
 BACKEND
 # TODO SECURITY
-# TODO add profile picture next to profile in nav menu + dropdown menu
 # TODO send thanks for registration email
 # TODO forgotten password
-# TODO last 3 games in team standings table
 # TODO add played and upcoming matches to team and player details
 # TODO add my matches in profile details
-# TODO when choosing mvp, queryset of players from the teams which have played the match
 # TODO add starting 6 (not all registered players play every match)
 # TODO access db
 # TODO every team must have allowed opponents (according to the draw) and when the opponent is chosen, the team must be removed from the list of allowed opponents
@@ -21,6 +18,4 @@ FRONTEND
 # TODO add about us page with contacts
 # TODO add rules and how to use page
 # TODO team management (combine edit team, add players and my matches) + profile management with REST
-
-EXTRA
-# TODO add how to use in GitHub
+# TODO add profile picture next to profile in nav menu + dropdown menu
