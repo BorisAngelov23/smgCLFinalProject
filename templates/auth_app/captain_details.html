@@ -37,10 +37,7 @@
         {% endif %}
     {% if user.team and user.added_players %}
         <div class="container">
-        <a href="{% url 'players_edit' %}" class="btn btn-primary btn-lg oval-button">EDIT TEAM</a>
-        </div>
-        <div class="container">
-            <a href="{% url 'players_extra_add' %}" class="btn btn-primary btn-lg oval-button">ADD PLAYERS</a>
+            <a href="{% url 'team_management' %}" class="btn btn-primary btn-lg oval-button">TEAM MANAGEMENT</a>
         </div>
     {% endif %}
     <div class="container">

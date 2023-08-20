@@ -4,7 +4,9 @@ from django.forms import formset_factory, BaseFormSet
 from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, TemplateView
+
+from smgCLFinalProject.match.models import Match
 from smgCLFinalProject.team.forms import (
     TeamRegistrationForm,
     PlayerForm,
@@ -231,6 +233,12 @@ class PlayersFromTeam(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["team"] = Team.objects.get(id=self.kwargs["pk"])
+        context["upcoming_matches"] = Match.objects.filter(
+            team1=self.kwargs["pk"], status="accepted"
+        ) | Match.objects.filter(team2=self.kwargs["pk"], status="accepted")
+        context["played_matches"] = Match.objects.filter(
+            team1=self.kwargs["pk"], status="played"
+        ) | Match.objects.filter(team2=self.kwargs["pk"], status="played")
         return context
 
 
@@ -248,4 +256,32 @@ class PlayerDetail(DetailView):
         }
         context = super().get_context_data(**kwargs)
         context["position"] = POSITION_CHOICES[self.object.position]
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["upcoming_matches"] = Match.objects.filter(
+            team1=player.team, status="accepted"
+        ) | Match.objects.filter(team2=player.team, status="accepted")
+        context["played_matches"] = Match.objects.filter(
+            team1=player.team, status="played"
+        ) | Match.objects.filter(team2=player.team, status="played")
+        return context
+
+
+class TeamManagement(LoginRequiredMixin, ListView):
+    template_name = "team/team_management.html"
+    context_object_name = "players"
+
+    def get_queryset(self):
+        return Player.objects.filter(team=self.request.user.team).order_by(
+            "-goals", "-assists", "first_name", "last_name"
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["team"] = Team.objects.get(id=self.request.user.team.id)
+        context["upcoming_matches"] = Match.objects.filter(
+            team1=self.request.user.team, status="accepted"
+        ) | Match.objects.filter(team2=self.request.user.team, status="accepted")
+        context["played_matches"] = Match.objects.filter(
+            team1=self.request.user.team, status="played"
+        ) | Match.objects.filter(team2=self.request.user.team, status="played")
         return context

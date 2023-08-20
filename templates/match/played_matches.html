@@ -1,0 +1,27 @@
+{% load static %}
+<h1 style="text-align: center">Played</h1>
+        <div class="table-responsive">
+            <table class="table table-hover table-borderless" style="font-size: larger">
+                <tbody>
+                    {% for match in played_matches %}
+                        {% if match.status == 'played' %}
+                            <tr>
+                                <td>
+                                    <button class="collapsible" style="text-align: center; font-size: larger" data-match-id="{{ match.pk }}">
+                                        {{ match.team1 }} vs. {{ match.team2 }}
+                                        <br>{{ match.team1_goals }} - {{ match.team2_goals }}
+                                    </button>
+                                    <div class="content">
+                                        {{ match.date }}, {{ match.time }}
+                                        <p style="margin-top: 15px"><strong>Goalscorers:</strong></p>
+                                        <ul id="goalscorers-{{ match.pk }}" style="margin-bottom: 15px; color: #0dcaf0"></ul>
+                                        <p><strong>MVP:</strong> <a href="{% url 'player_detail' match.mvp.pk %}" style="color: #0dcaf0">{{ match.mvp }}</a></p>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    <script src="{% static 'js/upcoming_matches.js' %}"></script>

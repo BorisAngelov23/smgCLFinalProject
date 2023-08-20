@@ -77,5 +77,10 @@ class MatchesTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["matches"] = Match.objects.all()
+        context["upcoming_matches"] = Match.objects.filter(status="accepted").order_by(
+            "date"
+        )
+        context["played_matches"] = Match.objects.filter(status="played").order_by(
+            "-date"
+        )
         return context
