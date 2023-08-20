@@ -1,8 +1,7 @@
 postgresql
-envs
 *.jpg
 *.png
 *.gif
 *.jpeg
-*.env
+.env
 *.pyc
