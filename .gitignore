@@ -1,4 +1,5 @@
 postgresql
+envs
 *.jpg
 *.png
 *.gif
