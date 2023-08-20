@@ -4,5 +4,6 @@ envs
 *.png
 *.gif
 *.jpeg
-.env
+*.env
 *.pyc
+envs/.env
