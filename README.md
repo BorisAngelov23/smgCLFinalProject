@@ -40,7 +40,6 @@ The SMG Champions League project aims to provide a comprehensive platform for fo
 - Bootstrap: A front-end framework for creating responsive and visually appealing designs.
 - JavaScript: Used for interactivity, collapsible match details, and carousel.
 - Bleach: A tool for sanitizing and cleaning user-generated content.
-- ... (Add any additional technologies used)
 
 ## Contributing
 We welcome contributions from the community! If you'd like to contribute to the project, please follow these steps:
