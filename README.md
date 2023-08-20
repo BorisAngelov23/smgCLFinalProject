@@ -28,6 +28,7 @@ The SMG Champions League project aims to provide a comprehensive platform for fo
 4. Configure the database settings in `settings.py`.
 5. Run database migrations: `python manage.py migrate`.
 6. Start the development server: `python manage.py runserver`.
+* set up .env
 
 ## Usage
 1. Access the application by visiting `http://localhost:8000` in your web browser.
