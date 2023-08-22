@@ -8,10 +8,10 @@
             <p class="lead" style="font-size: 25px">Here you can find all the latest news and updates about the tournament.</p>
             <p style="font-size: 20px">Stay tuned for the upcoming 2023/2024 season!</p>
             {% if match %}
-            <div class="pending-match-proposal">
-                <a href="{% url 'respond_to_match' pk=match.pk %}">PENDING MATCH PROPOSAL FROM {{ match.team1 }}</a>
-            </div>
-    {% endif %}
+                <div class="pending-match-proposal">
+                    <a href="{% url 'respond_to_match' pk=match.pk %}">PENDING MATCH PROPOSAL FROM {{ match.team1 }}</a>
+                </div>
+            {% endif %}
         </div>
         {% if not user.is_authenticated %}
         <div class="container position-absolute bottom-0 start-50 translate-middle-x mb-5">
