@@ -139,7 +139,7 @@ select:focus{
 
 input:disabled {
     background-color: #f0f0f0;
-    color: gray;
+    color: grey;
     border-color: #ccc;
 }
 
@@ -218,6 +218,16 @@ ul {
     margin-top: 20px;
 }
 
+.article-list-homepage {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    gap: 20px;
+    align-items: flex-start;
+}
+
 .article {
     border: 1px solid #ccc;
     padding: 20px;
@@ -225,6 +235,7 @@ ul {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    margin-top: 5px;
 }
 
 .article:hover {

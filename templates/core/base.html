@@ -24,9 +24,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'matches' %}">Matches</a>
                     </li>
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="#">About Us</a>#}
-{#                    </li>#}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about us' %}">About Us</a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'captain_details' pk=user.pk %}">Profile</a>

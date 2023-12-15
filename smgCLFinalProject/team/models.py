@@ -95,6 +95,8 @@ class Team(models.Model):
     wins = models.IntegerField(default=0)
     draws = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
+    # add allowed teams to play against which are given by the admins
+    allowed_teams = models.ManyToManyField("Team", related_name="allowed_teams_vs")
 
     def __str__(self):
         return self.name

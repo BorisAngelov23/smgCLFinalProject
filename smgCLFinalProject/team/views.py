@@ -120,7 +120,7 @@ def player_add(request):
         PlayerForm, extra=1, formset=FirstFiveRequiredFormset
     )
     if request.method == "GET":
-        if Player.objects.filter(team=request.user.team).count() >= 10:
+        if Player.objects.filter(team=request.user.team).count() >= 12:
             return redirect("homepage")
         formset = FootballPlayerFormSet()
         return render(request, "team/add_extra_players.html", {"formset": formset})
