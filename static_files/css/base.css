@@ -274,3 +274,20 @@ ul {
 .back-to-list:hover {
     color: #0056b3;
 }
+
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #01fae1 transparent;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #01fae1;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+}
