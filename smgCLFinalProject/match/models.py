@@ -9,6 +9,7 @@ class Match(models.Model):
         ("pending", "Pending"),
         ("accepted", "Accepted"),
         ("declined", "Declined"),
+        ("live", "Live"),
         ("played", "Played"),
     )
 
@@ -79,73 +80,40 @@ class Match(models.Model):
                 )
             player.save()
 
-    def team1_update(self):
-        self.team1.wins = 0
-        self.team1.losses = 0
-        self.team1.draws = 0
-        self.team1.games_played = 0
-        self.team1.goals_scored = 0
-        self.team1.goals_conceded = 0
+    @staticmethod
+    def team_update(team):
+        team.wins = 0
+        team.losses = 0
+        team.draws = 0
+        team.games_played = 0
+        team.goals_scored = 0
+        team.goals_conceded = 0
 
-        for match in Match.objects.filter(team1=self.team1, status="played"):
-            self.team1.games_played += 1
-            self.team1.goals_scored += match.team1_goals
-            self.team1.goals_conceded += match.team2_goals
+        for match in Match.objects.filter(team1=team, status="played"):
+            team.games_played += 1
+            team.goals_scored += match.team1_goals
+            team.goals_conceded += match.team2_goals
             if match.team1_goals > match.team2_goals:
-                self.team1.wins += 1
+                team.wins += 1
             elif match.team1_goals < match.team2_goals:
-                self.team1.losses += 1
+                team.losses += 1
             else:
-                self.team1.draws += 1
+                team.draws += 1
 
-        for match in Match.objects.filter(team2=self.team1, status="played"):
-            self.team1.games_played += 1
-            self.team1.goals_scored += match.team2_goals
-            self.team1.goals_conceded += match.team1_goals
+        for match in Match.objects.filter(team2=team, status="played"):
+            team.games_played += 1
+            team.goals_scored += match.team2_goals
+            team.goals_conceded += match.team1_goals
             if match.team2_goals > match.team1_goals:
-                self.team1.wins += 1
+                team.wins += 1
             elif match.team2_goals < match.team1_goals:
-                self.team1.losses += 1
+                team.losses += 1
             else:
-                self.team1.draws += 1
+                team.draws += 1
 
-        self.team1.goal_difference = self.team1.goals_scored - self.team1.goals_conceded
-        self.team1.points = self.team1.wins * 3 + self.team1.draws
-        self.team1.save()
-
-    def team2_update(self):
-        self.team2.wins = 0
-        self.team2.losses = 0
-        self.team2.draws = 0
-        self.team2.games_played = 0
-        self.team2.goals_scored = 0
-        self.team2.goals_conceded = 0
-
-        for match in Match.objects.filter(team1=self.team2, status="played"):
-            self.team2.games_played += 1
-            self.team2.goals_scored += match.team1_goals
-            self.team2.goals_conceded += match.team2_goals
-            if match.team1_goals > match.team2_goals:
-                self.team2.wins += 1
-            elif match.team1_goals < match.team2_goals:
-                self.team2.losses += 1
-            else:
-                self.team2.draws += 1
-
-        for match in Match.objects.filter(team2=self.team2, status="played"):
-            self.team2.games_played += 1
-            self.team2.goals_scored += match.team2_goals
-            self.team2.goals_conceded += match.team1_goals
-            if match.team2_goals > match.team1_goals:
-                self.team2.wins += 1
-            elif match.team2_goals < match.team1_goals:
-                self.team2.losses += 1
-            else:
-                self.team2.draws += 1
-
-        self.team2.goal_difference = self.team2.goals_scored - self.team2.goals_conceded
-        self.team2.points = self.team2.wins * 3 + self.team2.draws
-        self.team2.save()
+        team.goal_difference = team.goals_scored - team.goals_conceded
+        team.points = team.wins * 3 + team.draws
+        team.save()
 
     def save(self, *args, **kwargs):
         if self.status == "declined":
@@ -153,8 +121,14 @@ class Match(models.Model):
         else:
             super().save(*args, **kwargs)
             self.update_players()
-            self.team1_update()
-            self.team2_update()
+            for team in Team.objects.all():
+                self.team_update(team)
+
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+        self.update_players()
+        for team in Team.objects.all():
+            self.team_update(team)
 
     class Meta:
         ordering = ("date", "time")

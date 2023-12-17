@@ -31,7 +31,9 @@
                     <li class="nav-item">
                         <div class="navbar-profile">
                                 <a class="nav-link" href="{% url 'captain_details' pk=user.pk %}">Profile
+                                    {% if user.profile_picture %}
                                 <img src="{% get_media_prefix %}{{ user.profile_picture }}" alt="Profile Picture" style="width: 30px; height: 30px; border-radius: 50%; margin-left: 10px">
+                                        {% endif %}
                                 </a>
                         </div>
                     </li>

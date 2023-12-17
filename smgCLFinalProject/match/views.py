@@ -58,15 +58,18 @@ class MatchPlayerStatsSerializer(serializers.ModelSerializer):
         model = MatchPlayerStats
         fields = ["player_name", "goals_scored", "player_id"]
 
-    def get_player_name(self, obj):
+    @staticmethod
+    def get_player_name(obj):
         return str(obj.player)
 
-    def get_player_id(self, obj):
+    @staticmethod
+    def get_player_id(obj):
         return obj.player.id
 
 
 class MatchGoalscorersView(APIView):
-    def get(self, request, match_id, *args, **kwargs):
+    @staticmethod
+    def get(request, match_id, *args, **kwargs):
         match_stats = MatchPlayerStats.objects.filter(match_id=match_id)
         serializer = MatchPlayerStatsSerializer(match_stats, many=True)
         return JsonResponse(serializer.data, safe=False)
@@ -83,4 +86,5 @@ class MatchesTemplateView(TemplateView):
         context["played_matches"] = Match.objects.filter(status="played").order_by(
             "-date"
         )
+        context["live_matches"] = Match.objects.filter(status="live").order_by("-date")
         return context
