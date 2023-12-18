@@ -46,17 +46,17 @@ class Match(models.Model):
             player.mvps = Match.objects.filter(mvp=player).count()
             player.games_played = (
                 Match.objects.filter(
-                    team1=player.team, status="played").count()
+                    team1=player.team, status__in=["live", "played"]).count()
                 + Match.objects.filter(team2=player.team,
-                                       status="played").count()
+                                       status__in=["live", "played"]).count()
             )
             if player.position == "GK":
                 player.clean_sheets = (
                     Match.objects.filter(
-                        team1=player.team, status="played", team2_goals=0
+                        team1=player.team, status__in=["live", "played"], team2_goals=0
                     ).count()
                     + Match.objects.filter(
-                        team2=player.team, status="played", team1_goals=0
+                        team2=player.team, status__in=["live", "played"], team1_goals=0
                     ).count()
                 )
             player.save()
@@ -64,18 +64,18 @@ class Match(models.Model):
         for player in self.team2.players.all():
             player.games_played = (
                 Match.objects.filter(
-                    team1=player.team, status="played").count()
+                    team1=player.team, status__in=["live", "played"]).count()
                 + Match.objects.filter(team2=player.team,
-                                       status="played").count()
+                                       status__in=["live", "played"]).count()
             )
             player.mvps = Match.objects.filter(mvp=player).count()
             if player.position == "GK":
                 player.clean_sheets = (
                     Match.objects.filter(
-                        team1=player.team, status="played", team2_goals=0
+                        team1=player.team, status__in=["live", "played"], team2_goals=0
                     ).count()
                     + Match.objects.filter(
-                        team2=player.team, status="played", team1_goals=0
+                        team2=player.team, status__in=["live", "played"], team1_goals=0
                     ).count()
                 )
             player.save()
@@ -89,7 +89,7 @@ class Match(models.Model):
         team.goals_scored = 0
         team.goals_conceded = 0
 
-        for match in Match.objects.filter(team1=team, status="played"):
+        for match in Match.objects.filter(team1=team, status__in=["live", "played"]):
             team.games_played += 1
             team.goals_scored += match.team1_goals
             team.goals_conceded += match.team2_goals
@@ -100,7 +100,7 @@ class Match(models.Model):
             else:
                 team.draws += 1
 
-        for match in Match.objects.filter(team2=team, status="played"):
+        for match in Match.objects.filter(team2=team, status__in=["live", "played"]):
             team.games_played += 1
             team.goals_scored += match.team2_goals
             team.goals_conceded += match.team1_goals
