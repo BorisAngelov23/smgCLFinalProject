@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <header class="jumbotron jumbotron-fluid text-white text-center position-relative">
         <h1 class="display-4">Arrange a match</h1>
         <p class="lead">The opponent will be notified and will choose whether to accept your match proposal.</p>
@@ -15,4 +18,22 @@
         </form>
     </div>
     </main>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#id_date", {
+            enableTime: false,
+            dateFormat: "Y-m-d",
+            minDate: "2023-09-15",
+        });
+
+        flatpickr("#id_time", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            minTime: "07:30",
+            maxTime: "19:10",
+        });
+    });
+</script>
 {% endblock %}
