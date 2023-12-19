@@ -22,7 +22,7 @@ The SMG Champions League project aims to provide a comprehensive platform for fo
 - **User Authentication:** Register as a team captain, log in, and manage your team.
 
 ## Installation
-1. Clone this repository using `git clone https://github.com/your-username/your-project.git`.
+1. Clone this repository using `git clone https://github.com/BorisAngelov23/smgCLFinalProject`.
 2. Navigate to the project directory: `cd your-project`.
 3. Install required dependencies using `pip install -r requirements.txt`.
 4. Configure the database settings in `settings.py`.
