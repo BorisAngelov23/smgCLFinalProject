@@ -24,16 +24,17 @@
             <tbody>
             {% for team in teams %}
                 <tr onclick="window.location='{% url 'players_from_team' team.pk %}'" style="cursor:pointer;">
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ team.name }}</td>
-                    <td>{{ team.games_played }}</td>
-                    <td>{{ team.wins }}</td>
-                    <td>{{ team.draws }}</td>
-                    <td>{{ team.losses }}</td>
+                    <th scope="row"  style="{% if forloop.counter <= 4 %} background-color: #04bc5c; {% endif %}
+                            {% if forloop.counter > 12%} background-color: #0a3622; {% endif %}">{{ forloop.counter }}</th>
+                    <td {% if team.has_live_match %} style="color: red" {% endif %}>{{ team.name }}</td>
+                    <td {% if team.has_live_match %} style="color: red" {% endif %}>{{ team.games_played }}</td>
+                    <td {% if team.has_live_match and "win" in team.has_live_match %} style="color: red" {% endif %}>{{ team.wins }}</td>
+                    <td {% if team.has_live_match and "draw" in team.has_live_match %} style="color: red" {% endif %}>{{ team.draws }}</td>
+                    <td {% if team.has_live_match and "loss" in team.has_live_match %} style="color: red" {% endif %}>{{ team.losses }}</td>
                     <td>{{ team.goals_scored }}</td>
                     <td>{{ team.goals_conceded }}</td>
                     <td>{{ team.goal_difference }}</td>
-                    <td style="font-weight: bold">{{ team.points }}</td>
+                    <td {% if team.has_live_match %} style="color: red" {% endif %} style="font-weight: bold">{{ team.points }}</td>
                 </tr>
             {% endfor %}
             </tbody>

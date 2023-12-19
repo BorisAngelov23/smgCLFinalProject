@@ -198,15 +198,36 @@ def players_edit(request):
     return render(request, "team/edit_players.html", {"formset": formset})
 
 
+def has_live_match(team):
+    for match in Match.objects.filter(team1=team, status="live"):
+        if match.team1_goals > match.team2_goals:
+            return True, "win"
+        elif match.team1_goals < match.team2_goals:
+            return True, "loss"
+        else:
+            return True, "draw"
+    for match in Match.objects.filter(team2=team, status="live"):
+        if match.team1_goals > match.team2_goals:
+            return True, "loss"
+        elif match.team1_goals < match.team2_goals:
+            return True, "win"
+        else:
+            return True, "draw"
+    return False
+
+
 class Standings(ListView):
     model = Team
     template_name = "team/standings.html"
     context_object_name = "teams"
 
     def get_queryset(self):
-        return Team.objects.all().order_by(
+        teams = Team.objects.all().order_by(
             "-points", "-goal_difference", "-goals_scored", "name"
         )
+        for team in teams:
+            team.has_live_match = has_live_match(team)
+        return teams
 
 
 class PlayerStandings(ListView):
