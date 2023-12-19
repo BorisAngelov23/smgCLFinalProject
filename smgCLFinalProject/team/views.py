@@ -78,7 +78,7 @@ class FirstFiveRequiredFormset(BaseFormSet):
             raise forms.ValidationError(
                 "You can have up to 1 transfer (must be from your grade) in your team."
             )
-        if transfers == 1 and (user.team.grade == "8" or user.team.grade == "9" or user.team.grade == "10"):
+        if transfers == 1 and (user.team.grade == "8" or user.team.grade == "9"):
             raise forms.ValidationError(
                 "You can't have transfers in your team if you are from 8th, 9th or 10th grade."
             )

@@ -30,9 +30,7 @@ class TeamRegistrationForm(forms.ModelForm):
             raise ValidationError("You must choose at least 1 class")
         if len(paralelki) > 3 and self.user.grade == "9":
             raise ValidationError("You can't choose more than 3 classes")
-        if len(paralelki) > 2 and self.user.grade == "10":
-            raise ValidationError("You can't choose more than 2 classes")
-        if len(paralelki) > 1 and (self.user.grade == "11" or self.user.grade == "12"):
+        if len(paralelki) > 1 and (self.user.grade == "11" or self.user.grade == "12" or self.user.grade == "10"):
             raise ValidationError("You can't choose more than 1 class")
         if len(paralelki) < 6 and self.user.grade == "8":
             raise ValidationError("You must choose all 6 classes")
@@ -128,11 +126,11 @@ class PlayerForm(forms.ModelForm):
                     grade != self.user.grade
                     or paralelka not in self.user.team.paralelki
             ):
-                if self.user.team.grade == '8' or self.user.team.grade == '9' or self.user.team.grade == '10':
+                if self.user.team.grade == '8' or self.user.team.grade == '9':
                     raise forms.ValidationError(
                         "No transfers allowed for teams from 8th, 9th and 10th grade."
                     )
-            if self.user.grade == '11' or self.user.grade == '12':
+            if self.user.grade == '11' or self.user.grade == '12' or self.user.grade == '10':
                 transfer = False
                 for player in players:
                     if (
@@ -141,7 +139,7 @@ class PlayerForm(forms.ModelForm):
                     ):
                         if transfer:
                             raise forms.ValidationError(
-                                "Up to 1 transfer for teams from 11th and 12th."
+                                "Up to 1 transfer for teams from 10th and 12th."
                             )
                         transfer = True
         return cleaned_data
@@ -191,9 +189,9 @@ class PlayerEditForm(forms.ModelForm):
                 player.grade != self.user.grade
                 or player.paralelka not in self.user.team.paralelki
             ):
-                if transfer or player.team.grade == '8' or player.team.grade == '9' or player.team.grade == '10':
+                if transfer or player.team.grade == '8' or player.team.grade == '9':
                     raise forms.ValidationError(
-                        "Up to 1 transfer for teams from 11th and 12th grade and 0 for teams from 8th, 9th and 10th grade."
+                        "Up to 1 transfer for teams from 10th to 12th grade and 0 for teams from 8th and 9th grade."
                     )
                 transfer = True
         return cleaned_data
