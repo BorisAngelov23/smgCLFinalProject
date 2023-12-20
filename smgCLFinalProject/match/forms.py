@@ -19,12 +19,17 @@ class ArrangeMatchForm(forms.ModelForm):
         match_time = cleaned_data.get("time")
         team2 = cleaned_data.get("team2")
 
+        if Match.objects.filter(team1=self.user.team).count() + Match.objects.filter(team2=self.user.team).count() >= 6:
+            raise forms.ValidationError(
+                "You cannot arrange more than 6 matches overall."
+            )
+
         if team2 == self.user.team:
             raise forms.ValidationError(
                 "You cannot arrange a match with yourself.")
         if (
                 Match.objects.filter(
-                    team1=team2, team2=self.user.team, date=match_date
+                   team1=team2, team2=self.user.team, date=match_date
                 ).exists()
                 or Match.objects.filter(
             team1=self.user.team, team2=team2, date=match_date
@@ -41,10 +46,8 @@ class ArrangeMatchForm(forms.ModelForm):
             raise forms.ValidationError(
                 "There is already a match at that date and time."
             )
-        if match_date < timezone.now().date():
-            raise forms.ValidationError(
-                "You cannot arrange a match in the past.")
-        if match_date == timezone.now().date() and match_time < timezone.now().time():
+        if match_date < timezone.now().date() or (
+                match_date == timezone.now().date() and match_time < timezone.now().time()):
             raise forms.ValidationError(
                 "You cannot arrange a match in the past.")
         if match_time < time(7, 30) or match_time > time(19, 10):
