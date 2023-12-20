@@ -2,6 +2,13 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{#    <style>#}
+{#        .article {#}
+{#            max-height: 650px;#}
+{#            max-width: 650px; /* Set your desired max height */#}
+{#            overflow: hidden;#}
+{#        }#}
+{#    </style>#}
     <header class="jumbotron-homepage jumbotron-fluid bg-dark text-white text-center position-relative">
         <div class="container position-absolute top-0 start-50 translate-middle-x">
             <h1 class="display-4">Welcome to the SMG Champions League</h1>
@@ -32,18 +39,31 @@
         {% endif %}
     </header>
 {#    <main style="background-color: #0E1E5B;">#}
-{#    <h1 class="text-center">Latest News</h1>#}
-{#        <div class="article-list-homepage">#}
-{#            {% for article in articles %}#}
-{#                <a href="{% url 'article' article.pk %}" class="article-link">#}
-{#                    <div class="article">#}
-{#                        <img src="{% get_media_prefix %}{{ article.image }}" alt="{{ article.title }}" class="article-image">#}
-{#                        <h2 class="article-title">{{ article.title }}</h2>#}
-{#                        <p class="article-author">By {{ article.author }}</p>#}
-{#                        <p class="article-date">{{ article.date }}</p>#}
+{#        <h1 class="text-center">Latest News</h1>#}
+{#        <div id="newsCarousel" class="carousel slide" data-ride="carousel">#}
+{#            <div class="carousel-inner">#}
+{#                {% for article in articles|slice:":4" %}#}
+{#                    <div class="carousel-item {% if forloop.first %}active{% endif %}">#}
+{#                        <a href="{% url 'article' article.pk %}" class="article-link">#}
+{#                            <div class="article">#}
+{#                                <img src="{% get_media_prefix %}{{ article.image }}" alt="{{ article.title }}" class="d-block w-100 custom-carousel-image">#}
+{#                                <div class="carousel-caption d-none d-md-block">#}
+{#                                    <h2 class="article-title">{{ article.title }}</h2>#}
+{#                                    <p class="article-author">By {{ article.author }}</p>#}
+{#                                    <p class="article-date">{{ article.date }}</p>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </a>#}
 {#                    </div>#}
-{#                </a>#}
-{#            {% endfor %}#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            <!-- Carousel controls without text and icons -->#}
+{#            <a class="carousel-control-prev" href="#newsCarousel" role="button" data-slide="prev"></a>#}
+{#            <a class="carousel-control-next" href="#newsCarousel" role="button" data-slide="next"></a>#}
 {#        </div>#}
 {#    </main>#}
+{#    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>#}
+
 {% endblock %}

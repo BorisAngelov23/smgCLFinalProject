@@ -260,6 +260,9 @@ class PlayersFromTeam(ListView):
         context["played_matches"] = Match.objects.filter(
             team1=self.kwargs["pk"], status="played"
         ) | Match.objects.filter(team2=self.kwargs["pk"], status="played")
+        context["live_matches"] = Match.objects.filter(
+            team1=self.kwargs["pk"], status="live"
+        ) | Match.objects.filter(team2=self.kwargs["pk"], status="live")
         return context
 
 
@@ -284,6 +287,9 @@ class PlayerDetail(DetailView):
         context["played_matches"] = Match.objects.filter(
             team1=player.team, status="played"
         ) | Match.objects.filter(team2=player.team, status="played")
+        context["live_matches"] = Match.objects.filter(
+            team1=player.team, status="live"
+        ) | Match.objects.filter(team2=player.team, status="live")
         return context
 
 
@@ -305,4 +311,7 @@ class TeamManagement(LoginRequiredMixin, ListView):
         context["played_matches"] = Match.objects.filter(
             team1=self.request.user.team, status="played"
         ) | Match.objects.filter(team2=self.request.user.team, status="played")
+        context["live_matches"] = Match.objects.filter(
+            team1=self.request.user.team, status="live"
+        ) | Match.objects.filter(team2=self.request.user.team, status="live")
         return context

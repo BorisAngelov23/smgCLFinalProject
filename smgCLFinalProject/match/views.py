@@ -56,7 +56,7 @@ class MatchPlayerStatsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MatchPlayerStats
-        fields = ["player_name", "goals_scored", "player_id"]
+        fields = ["player_name", "goals_scored", "player_id", "minutes_of_goal"]
 
     @staticmethod
     def get_player_name(obj):

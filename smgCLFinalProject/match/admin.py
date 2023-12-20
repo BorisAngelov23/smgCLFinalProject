@@ -6,6 +6,7 @@ from .forms import MatchForm
 class MatchPlayerStatsInline(admin.TabularInline):
     model = MatchPlayerStats
     extra = 1
+    fields = ('player', 'goals_scored', 'minutes_of_goal', 'assists', 'yellow_cards', 'red_cards')
 
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)

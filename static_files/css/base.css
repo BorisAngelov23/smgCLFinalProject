@@ -223,9 +223,10 @@ ul {
     flex-wrap: nowrap;
     overflow-x: auto;
     margin-top: 20px;
+    margin-left: 50px;
     padding-bottom: 20px;
     gap: 20px;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .article {

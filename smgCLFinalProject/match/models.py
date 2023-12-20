@@ -142,6 +142,7 @@ class MatchPlayerStats(models.Model):
     match = models.ForeignKey(Match, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     goals_scored = models.PositiveIntegerField(default=0)
+    minutes_of_goal = models.CharField(max_length=100, blank=True)
     assists = models.PositiveIntegerField(default=0)
     yellow_cards = models.PositiveIntegerField(default=0)
     red_cards = models.PositiveIntegerField(default=0)

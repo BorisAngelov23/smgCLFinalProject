@@ -27,7 +27,7 @@ var coll = document.getElementsByClassName("collapsible");
                             var li = document.createElement("li");
                             var a = document.createElement("a");
                             a.href = "/player/" + stats.player_id + "/";
-                            a.textContent = stats.player_name + " (" + stats.goals_scored + " goals)";
+                            a.textContent = stats.player_name + " - " + stats.minutes_of_goal;
                             a.style.color = "#0dcaf0";
                             li.appendChild(a);
                             ul.appendChild(li);

@@ -7,8 +7,6 @@ from .models import Match
 
 
 class ArrangeMatchForm(forms.ModelForm):
-    # date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}))
-    # time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'timepicker'}))
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")

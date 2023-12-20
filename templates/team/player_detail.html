@@ -51,10 +51,10 @@
                 </tr>
             </tbody>
         </table>
-    <div style="font-size: 15px">
+        {% include 'match/live_matches.html' %}
     {% include 'match/upcoming_matches.html' %}
     {% include 'match/played_matches.html' %}
-        </div>
+        <script src="{% static 'js/played_and_live_matches.js' %}"></script>
     </main>
 
 {% endblock %}
