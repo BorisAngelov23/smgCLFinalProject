@@ -11,8 +11,8 @@
     <div>
         <form method="post" action="{% url 'respond_to_match' pk=match.pk%}" style="font-size: 25px">
             <p>Match info:</p>
-            <p>Match date: {{ match.date }}</p>
-            <p>Match time: {{ match.time }}</p>
+            <p>Match date: {{ match.date|date:"d.m.Y" }}</p>
+            <p>Match time: {{ match.time|time:"H:i" }}</p>
             <p>Opponent: {{ match.team1 }}</p>
             {% csrf_token %}
             {{ form.as_p }}

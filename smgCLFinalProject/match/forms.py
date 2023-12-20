@@ -23,12 +23,12 @@ class ArrangeMatchForm(forms.ModelForm):
             raise forms.ValidationError(
                 "You cannot arrange a match with yourself.")
         if (
-            Match.objects.filter(
-                team1=team2, team2=self.user.team, date=match_date
-            ).exists()
-            or Match.objects.filter(
-                team1=self.user.team, team2=team2, date=match_date
-            ).exists()
+                Match.objects.filter(
+                    team1=team2, team2=self.user.team, date=match_date
+                ).exists()
+                or Match.objects.filter(
+            team1=self.user.team, team2=team2, date=match_date
+        ).exists()
         ):
             raise forms.ValidationError(
                 "You already have a match with this team on this day."
