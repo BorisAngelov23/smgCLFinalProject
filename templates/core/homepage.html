@@ -3,7 +3,7 @@
 {% block content %}
     <style>
         .article {
-            max-width: 80%;
+            max-width: 40%;
             margin: 0 auto;
             padding: 20px;
             background-color: #0E1E5B;
@@ -63,15 +63,16 @@
         </div>
         {% endif %}
     </header>
-    <main style="background-color: #0E1E5B">
+    <main style="background: rgb(6,17,58);
+background: linear-gradient(180deg, rgba(6,17,58,1) 0%, rgba(14,30,91,1) 100%);">
         <h1 class="text-center" style="margin-top: 20px; margin-bottom: 20px">Latest News</h1>
-        <div id="newsCarousel" class="carousel slide" data-ride="carousel">
+        <div id="newsCarousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner" style="align-self: center">
                 {% for article in articles|slice:":4" %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background-color: transparent">
                         <a href="{% url 'article' article.pk %}" class="article-link" style="width: 200px">
                             <div class="article" style="margin-top: 5px">
-                                <img src="{% get_media_prefix %}{{ article.image }}" alt="{{ article.title }}" class="d-block w-100 custom-carousel-image">
+                                <img src="{% get_media_prefix %}{{ article.image }}" alt="{{ article.title }}" class="custom-carousel-image" >
                                 <div>
                                     <h2 class="article-title">{{ article.title }}</h2>
                                     <p class="article-author">By {{ article.author }}</p>

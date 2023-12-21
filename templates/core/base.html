@@ -43,7 +43,7 @@
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.instagram.com/smgfootball2023/" target="_blank">
+                        <a class="nav-link" href="https://www.instagram.com/smgfootball2024/" target="_blank">
                             <img src="{% static 'images/instagram-logo.png' %}" alt="Instagram" class="instagram-logo">
                         </a>
                     </li>
@@ -51,7 +51,13 @@
     </nav>
     {% block content %}
     {% endblock %}
-      <footer style="background-color: transparent">
+      {% if request.path == '/' %}
+    <footer style="background: rgb(14,30,91);
+                    background: linear-gradient(180deg, rgba(14,30,91,1) 0%, rgba(92,29,187,1) 69%);">
+{% else %}
+    <footer style="background: rgb(6,17,58);
+background: linear-gradient(180deg, rgba(6,17,58,1) 25%, rgba(14,30,91,1) 100%);">
+{% endif %}
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-4" style="margin-top: 15px">
@@ -63,7 +69,7 @@
                 </div>
                 <div class="col-md-4" style="margin-top: 15px">
                     <a href="https://www.smg.bg" target="_blank">
-                        <img src="{% static 'images/SMG-logo-dragon-vector-1286x280px.png' %}" style="width 140px; height: 135px;" alt="Sponsor">
+                        <img src="{% static 'images/favicon.png' %}" style="width 140px; height: 135px;" alt="Sponsor">
                     </a>
                 </div>
                 <div class="col-md-4" style="margin-top: 15px">
