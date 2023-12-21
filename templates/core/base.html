@@ -42,11 +42,6 @@
                         <a class="nav-link" href="{% url 'captain_login'%}">Login</a>
                     </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.instagram.com/smgfootball2024/" target="_blank">
-                            <img src="{% static 'images/instagram-logo.png' %}" alt="Instagram" class="instagram-logo">
-                        </a>
-                    </li>
                 </ul>
     </nav>
     {% block content %}
@@ -56,7 +51,7 @@
                     background: linear-gradient(180deg, rgba(14,30,91,1) 0%, rgba(92,29,187,1) 69%);">
 {% else %}
     <footer style="background: rgb(6,17,58);
-background: linear-gradient(180deg, rgba(6,17,58,1) 25%, rgba(14,30,91,1) 100%);">
+background: linear-gradient(180deg, rgba(6,17,58,1) 0%, rgba(92,29,187,1) 69%);">
 {% endif %}
         <div class="container py-5">
             <div class="row">
@@ -69,7 +64,7 @@ background: linear-gradient(180deg, rgba(6,17,58,1) 25%, rgba(14,30,91,1) 100%);
                 </div>
                 <div class="col-md-4" style="margin-top: 15px">
                     <a href="https://www.smg.bg" target="_blank">
-                        <img src="{% static 'images/favicon.png' %}" style="width 140px; height: 135px;" alt="Sponsor">
+                        <img src="{% static 'images/favicon.png' %}" style="width: 140px; height: 135px;" alt="Sponsor">
                     </a>
                 </div>
                 <div class="col-md-4" style="margin-top: 15px">
@@ -83,6 +78,7 @@ background: linear-gradient(180deg, rgba(6,17,58,1) 25%, rgba(14,30,91,1) 100%);
               <div class="row">
                   <div class="col-md-12 text-center">
                       <p style="color: white">© 2023 SMG Champions League. All rights reserved.</p>
+                      <a href="https://www.linkedin.com/in/boris-angelov-b8a9a8276/"><p style="color: #0dcaf0">© Boris Angelov</p></a>
                   </div>
               </div>
             </div>

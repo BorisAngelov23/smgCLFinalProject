@@ -230,7 +230,7 @@ ul {
 
 .article {
     padding: 20px 20px 1px 20px;
-    background-color: #0E1E5B;
+    background-color: transparent;
     border-radius: 24px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
@@ -302,4 +302,11 @@ body {
 main {
     flex: 1;
 }
+
+/* Add this CSS to center the footer content */
+footer {
+    text-align: center;
+    padding: 20px 0; /* Adjust the padding as needed */
+}
+
 
