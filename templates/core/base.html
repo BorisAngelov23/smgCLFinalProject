@@ -51,7 +51,40 @@
     </nav>
     {% block content %}
     {% endblock %}
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <footer style="background-color: transparent">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-4" style="margin-top: 15px">
+                    <h3>Contacts</h3>
+                    <a href="https://www.instagram.com/smgfootball2024" target="_blank" style="color: #0dcaf0">
+                        <p style="margin-top: 15px">@smgfootball2024</p>
+                    </a>
+                    <p>Phone: +359 878 593 644</p>
+                </div>
+                <div class="col-md-4" style="margin-top: 15px">
+                    <a href="https://www.smg.bg" target="_blank">
+                        <img src="{% static 'images/SMG-logo-dragon-vector-1286x280px.png' %}" style="width 140px; height: 135px;" alt="Sponsor">
+                    </a>
+                </div>
+                <div class="col-md-4" style="margin-top: 15px">
+                    <h3>Our Address</h3>
+                    <p style="margin-top: 15px">Iskar St 61</p>
+                    <p>Sofia, Bulgaria</p>
+                </div>
+            </div>
+        </div>
+          <div class="container-fluid" style="background-color: transparent">
+              <div class="row">
+                  <div class="col-md-12 text-center">
+                      <p style="color: white">© 2023 SMG Champions League. All rights reserved.</p>
+                  </div>
+              </div>
+            </div>
+    </footer>
+
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
 </body>
 </html>
