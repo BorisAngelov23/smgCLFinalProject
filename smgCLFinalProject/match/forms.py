@@ -54,7 +54,7 @@ class ArrangeMatchForm(forms.ModelForm):
             raise forms.ValidationError(
                 "You cannot arrange a match before 7:30 or after 19:10."
             )
-        if match_date < date(2023, 9, 15):
+        if match_date < date(2024, 1, 1):
             raise forms.ValidationError(
                 "You cannot arrange a match before the start of the season."
             )

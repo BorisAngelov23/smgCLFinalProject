@@ -5,7 +5,7 @@
                     {% for match in upcoming_matches %}
                         <tr>
                             <td style="font-size: larger">{{ match.team1 }} vs {{ match.team2 }}
-                                <br>{{ match.date }} {{ match.time }}</td>
+                                <br>{{ match.date|date:"d.m.Y" }} {{ match.time|time:"H:i" }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

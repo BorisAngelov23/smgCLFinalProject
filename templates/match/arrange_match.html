@@ -22,14 +22,13 @@
     document.addEventListener("DOMContentLoaded", function () {
         flatpickr("#id_date", {
             enableTime: false,
-            dateFormat: "d.m.Y",
-            minDate: "15.09.2023",
+            dateFormat: "Y-m-d",
+            minDate: "2024-01-01",
         });
 
         flatpickr("#id_time", {
             enableTime: true,
             noCalendar: true,
-            dateFormat: "H:i",
             time_24hr: true,
             minTime: "07:30",
             maxTime: "19:10",

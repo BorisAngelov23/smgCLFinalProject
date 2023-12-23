@@ -13,7 +13,7 @@
                                                 <br>{{ match.team1_goals }} - {{ match.team2_goals }}
                                             </button>
                                             <div class="content">
-                                                {{ match.date }}, {{ match.time }}
+                                                {{ match.date|date:"d.m.Y" }}, {{ match.time|time:"H:i" }}
                                                 <p style="margin-top: 15px"><strong>Goalscorers:</strong></p>
                                                 <ul id="goalscorers-{{ match.pk }}" style="margin-bottom: 15px; color: #0dcaf0"></ul>
                                             </div>
