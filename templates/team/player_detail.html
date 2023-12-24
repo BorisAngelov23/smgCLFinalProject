@@ -1,11 +1,10 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-    <header class="jumbotron jumbotron-fluid text-white text-center position-relative">
-    <link rel="stylesheet" href="{% static 'css/captain_details.css' %}">
+    <main class="container" style="margin-top: 10px; font-size: 25px; text-align: center">
+    <header class="jumbotron jumbotron-fluid text-white text-center position-relative mb-3">
         <h1 class="display-4">Player Details</h1>
     </header>
-    <main class="container" style="margin-top: 30px; font-size: 25px; text-align: center">
     {% if player.picture %}
     <div>
         <img src="{% get_media_prefix %}{{ player.picture }}" alt="player_pic" style="width: 200px; height: 200px; border-radius: 50%">
