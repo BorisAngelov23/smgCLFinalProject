@@ -3,7 +3,6 @@
 {% block content %}
     <main class="container" style="margin-top: 10px; font-size: 25px; text-align: center">
     <header class="jumbotron jumbotron-fluid text-white text-center position-relative mb-3">
-        
         <h1 class="display-4">
         {{ player.first_name }} {{ player.last_name }} {% if player.is_captain %} (C) {% endif %} {% if player.position == 'GK' %} (GK) {% endif %}
         </h1>
