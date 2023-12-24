@@ -51,6 +51,7 @@
     </nav>
     {% block content %}
     {% endblock %}
+    {% if request.path != "/login/" and request.path != "/register/" %}
     <footer style="background: rgb(6,17,58);
 background: linear-gradient(180deg, rgba(6,17,58,1) 5%, rgba(92,29,187,1) 100%);">
         <div class="container py-5">
@@ -83,7 +84,7 @@ background: linear-gradient(180deg, rgba(6,17,58,1) 5%, rgba(92,29,187,1) 100%);
               </div>
             </div>
     </footer>
-
+    {% endif %}
 
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

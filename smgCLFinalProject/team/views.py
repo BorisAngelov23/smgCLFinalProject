@@ -294,7 +294,7 @@ class PlayerDetail(DetailView):
 
 
 class TeamManagement(LoginRequiredMixin, ListView):
-    template_name = "team/team_management.html"
+    template_name = "team/players_from_team.html"
     context_object_name = "players"
 
     def get_queryset(self):
