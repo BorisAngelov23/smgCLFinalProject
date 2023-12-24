@@ -142,6 +142,7 @@ input:disabled {
 table {
     border-collapse: collapse;
     width: 100%;
+
 }
 th, td, tr {
     border-collapse: collapse;
@@ -153,6 +154,12 @@ th, td, tr {
     background-color: #0E1E5B;
     color: white;
 }
+
+@media only screen and (max-width: 400px) {
+            table {
+                max-width: 350px;
+            }
+        }
 
 .pending-match-proposal{
     background-color: #ffdddd;

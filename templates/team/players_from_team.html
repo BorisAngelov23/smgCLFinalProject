@@ -11,25 +11,23 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Team</th>
-                <th scope="col">Goals</th>
-                <th scope="col">Assists</th>
-                <th scope="col">Y/R cards</th>
-                <th scope="col">Played</th>
+                <th scope="col" class="abbr">Goals</th>
+                <th scope="col" class="abbr">Assists</th>
+                <th scope="col">Y/R</th>
                 <th scope="col">MVPs</th>
+                <th scope="col" class="abbr">Played</th>
             </tr>
             </thead>
             <tbody>
             {% for player in players %}
                 <tr onclick="window.location='{% url 'player_detail' player.pk %}'" style="cursor:pointer;">
                     <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ player.first_name }} {{ player.last_name }} {% if player.is_captain %} (C) {% endif %} {% if player.position == 'GK' %} (GK) {% endif %}</td>
-                    <td>{{ player.team.name }}</td>
+                    <td>{{ player.first_name|first }}. {{ player.last_name }} {% if player.is_captain %} (C) {% endif %} {% if player.position == 'GK' %} (GK) {% endif %}</td>
                     <td>{{ player.goals }}</td>
                     <td>{{ player.assists }}</td>
                     <td>{{ player.yellow_cards }}/{{ player.red_cards }}</td>
-                    <td>{{ player.games_played }}</td>
                     <td>{{ player.mvps }}</td>
+                    <td>{{ player.games_played }}</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -48,4 +46,14 @@
     </div>
     {% endif %}
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth < 576) {
+                var abbrElements = document.getElementsByClassName('abbr');
+                for (var i = 0; i < abbrElements.length; i++) {
+                    abbrElements[i].textContent = abbrElements[i].textContent.charAt(0);
+                }
+            }
+        });
+    </script>
 {% endblock %}
