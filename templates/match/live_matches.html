@@ -1,4 +1,9 @@
 {% load static %}
+<style>
+    a {
+        color: #0dcaf0;
+    }
+</style>
 {% for match in live_matches %}
     {% if match.status == 'live' %}
         <script src="{% static "js/redDot.js" %}"></script>
@@ -9,7 +14,8 @@
                                     <tr>
                                         <td>
                                             <button class="collapsible" style="text-align: center; font-size: larger" data-match-id="{{ match.pk }}">
-                                                {{ match.team1 }} vs. {{ match.team2 }}
+                                                 <a href="{% url 'players_from_team' pk=match.team1.pk %}">{{ match.team1 }}</a> vs.
+                                <a href="{% url 'players_from_team' pk=match.team2.pk %}">{{ match.team2 }}</a>
                                                 <br>{{ match.team1_goals }} - {{ match.team2_goals }}
                                             </button>
                                             <div class="content">
