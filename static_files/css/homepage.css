@@ -1,3 +1,44 @@
+.article {
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #0E1E5B;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+@media only screen and (min-width: 950px) {
+    .article {
+        max-width: 50%;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .article {
+        max-width: 90%;
+    }
+}
+
+.custom-carousel-image {
+    max-height: 400px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.article-title {
+    font-size: 24px;
+}
+
+.article-author, .article-date {
+    font-size: 18px;
+    margin: 0;
+}
+
 .jumbotron-homepage {
     background-image: url("https://lh3.googleusercontent.com/pw/ABLVV85UR1-d8KbwtDIWescuxQUS8M-6BUGSxDwgdkBBjScCbkxF8zFIPLEqGqsDi221OgQmqHMmyeJsX_FwgJ9kyIyg37Gu5fVHZmvXqa0qp_akvpdSJM_nyCjzjfJ_88hPJz6agtOlfGSDn6NjLq1yGw85iA=w1740-h979-s-no-gm?authuser=0");
     background-size: cover;
@@ -17,7 +58,6 @@ div {
 .container {
   justify-content: center;
   align-items: center;
-  /*height: 100vh; !* Adjust the height as needed *!*/
 }
 
 .oval-button:active {

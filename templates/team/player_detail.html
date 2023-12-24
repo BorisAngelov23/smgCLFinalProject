@@ -55,15 +55,6 @@
     {% include 'match/played_matches.html' %}
         <script src="{% static 'js/played_and_live_matches.js' %}"></script>
     </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.innerWidth < 576) {
-                var abbrElements = document.getElementsByClassName('abbr');
-                for (var i = 0; i < abbrElements.length; i++) {
-                    abbrElements[i].textContent = abbrElements[i].textContent.charAt(0);
-                }
-            }
-        });
-    </script>
+    <script src="{% static 'js/abbr.js' %}"></script>
 
 {% endblock %}
