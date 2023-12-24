@@ -39,11 +39,8 @@ body {
     user-select: none; /* Standard */
 }
 
-/* Menu Styles */
-
 .navbar {
     background-color: transparent;
-    display: flex !important;
     justify-content: center !important;
 }
 
@@ -59,7 +56,6 @@ body {
 
 .navbar-brand {
     font-size: 25px;
-    line-height: 2.12;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -217,22 +213,10 @@ ul {
     gap: 30px;
 }
 
-.article-list-homepage {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    margin-top: 20px;
-    margin-left: 50px;
-    padding-bottom: 20px;
-    gap: 20px;
-    align-items: center;
-}
-
 .article {
-    padding: 20px 20px 1px 20px;
-    background-color: transparent;
+    background-color: #0E1E5B;
     border-radius: 24px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
     margin-top: 5px;
 }

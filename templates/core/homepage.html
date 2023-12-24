@@ -3,20 +3,29 @@
 {% block content %}
     <style>
         .article {
-            max-width: 40%;
-            margin: 0 auto;
+            margin: 10px auto;
             padding: 20px;
             background-color: #0E1E5B;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out;
-            border: none;
+        }
+
+        @media only screen and (min-width: 950px) {
+            .article {
+                max-width: 50%;
+            }
+        }
+
+        @media only screen and (max-width: 950px) {
+            .article {
+                max-width: 90%;
+            }
         }
 
         .custom-carousel-image {
-            max-height: 60%;
-            max-width: 600px;
+            max-height: 400px;
             width: auto;
-            height: auto;
+            max-width: 100%;
             display: block;
             margin: 0 auto;
         }
@@ -31,6 +40,7 @@
 
         .article-author, .article-date {
             font-size: 18px;
+            margin: 0;
         }
     </style>
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
@@ -63,24 +73,22 @@
         </div>
         {% endif %}
     </header>
-    <main style="background: rgb(6,17,58);
-background: linear-gradient(180deg, rgba(6,17,58,1) 0%, rgba(14,30,91,1) 100%);">
+    <main >
         <h1 class="text-center" style="margin-top: 20px; margin-bottom: 20px">Latest News</h1>
         <div id="newsCarousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner" style="align-self: center">
                 {% for article in articles|slice:":4" %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background-color: transparent">
-                            <div class="article" style="margin-top: 5px; background-color: transparent">
-                                
-                        <a href="{% url 'article' article.pk %}" class="article-link">
-                                <img src="{% get_media_prefix %}{{ article.image }}" alt="{{ article.title }}" class="custom-carousel-image" style="border-radius: 24px" >
-                                <div>
-                                    <h2 class="article-title">{{ article.title }}</h2>
-                                    <p class="article-author">By {{ article.author }}</p>
-                                    <p class="article-date">{{ article.date }}</p>
-                                </div>
-                            </div>
-                        </a>
+                        <div class="article">
+                            <a href="{% url 'article' article.pk %}" class="article-link">
+                                    <img src="{% get_media_prefix %}{{ article.image }}" alt="{{ article.title }}" class="custom-carousel-image" style="border-radius: 24px" >
+                                    <div>
+                                        <h2 class="article-title">{{ article.title }}</h2>
+                                        <p class="article-author">By {{ article.author }}</p>
+                                        <p class="article-date">{{ article.date }}</p>
+                                    </div>
+                            </a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
