@@ -1,58 +1,60 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-    <main class="container" style="margin-top: 10px; font-size: 25px; text-align: center">
-    <header class="jumbotron jumbotron-fluid text-white text-center position-relative mb-3">
-        <h1 class="display-4">
-        {{ player.first_name }} {{ player.last_name }} {% if player.is_captain %} (C) {% endif %} {% if player.position == 'GK' %} (GK) {% endif %}
-        </h1>
-    </header>
-    {% if player.picture %}
-    <div>
-        <img src="{% get_media_prefix %}{{ player.picture }}" alt="player_pic" style="width: 200px; height: 200px; border-radius: 50%">
-    </div>
-    {% else %}
-    <div>
-        <img src="{% static 'images/default_profile_pic.png' %}" alt="player_pic" style="width: 200px; height: 200px; border-radius: 50%">
-    </div>
-    {% endif %}
-    <div>
-        Grade and class: {{ player.grade }}{{ player.paralelka }}
-    </div>
-    <div>
-        Position: {{position}}
-    </div>
-    <table class="table table-hover">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Team</th>
-                <th scope="col" class="abbr">Goals</th>
-                <th scope="col" class="abbr">Assists</th>
-                {% if player.position == 'GK' %}
-                <th scope="col">Clean sheets</th>
-                {% endif %}
-                <th scope="col">Y/R</th>
-                <th scope="col">MVP</th>
-                <th scope="col" class="abbr">Played</th>
-            </tr>
-            </thead>
-            <tbody>
+    <main class="container" style="margin-top: 10px; text-align: center">
+        <div style=" font-size: 25px;">
+        <header class="jumbotron jumbotron-fluid text-white text-center position-relative mb-3">
+            <h1 class="display-4">
+            {{ player.first_name }} {{ player.last_name }} {% if player.is_captain %} (C) {% endif %} {% if player.position == 'GK' %} (GK) {% endif %}
+            </h1>
+        </header>
+        {% if player.picture %}
+        <div>
+            <img src="{% get_media_prefix %}{{ player.picture }}" alt="player_pic" style="width: 200px; height: 200px; border-radius: 50%">
+        </div>
+        {% else %}
+        <div>
+            <img src="{% static 'images/default_profile_pic.png' %}" alt="player_pic" style="width: 200px; height: 200px; border-radius: 50%">
+        </div>
+        {% endif %}
+        <div>
+            Grade and class: {{ player.grade }}{{ player.paralelka }}
+        </div>
+        <div>
+            Position: {{position}}
+        </div>
+        <table class="table table-hover">
+                <thead class="thead-dark">
                 <tr>
-                    <td>{{ player.team.name }}</td>
-                    <td>{{ player.goals }}</td>
-                    <td>{{ player.assists }}</td>
+                    <th scope="col">Team</th>
+                    <th scope="col" class="abbr">Goals</th>
+                    <th scope="col" class="abbr">Assists</th>
                     {% if player.position == 'GK' %}
-                    <td>{{ player.clean_sheets }}</td>
+                    <th scope="col">Clean sheets</th>
                     {% endif %}
-                    <td>{{ player.yellow_cards }}/{{ player.red_cards }}</td>
-                    <td>{{ player.mvps }}</td>
-                    <td>{{ player.games_played }}</td>
+                    <th scope="col">Y/R</th>
+                    <th scope="col">MVP</th>
+                    <th scope="col" class="abbr">Played</th>
                 </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ player.team.name }}</td>
+                        <td>{{ player.goals }}</td>
+                        <td>{{ player.assists }}</td>
+                        {% if player.position == 'GK' %}
+                        <td>{{ player.clean_sheets }}</td>
+                        {% endif %}
+                        <td>{{ player.yellow_cards }}/{{ player.red_cards }}</td>
+                        <td>{{ player.mvps }}</td>
+                        <td>{{ player.games_played }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         {% include 'match/live_matches.html' %}
-    {% include 'match/upcoming_matches.html' %}
-    {% include 'match/played_matches.html' %}
+        {% include 'match/upcoming_matches.html' %}
+        {% include 'match/played_matches.html' %}
         <script src="{% static 'js/played_and_live_matches.js' %}"></script>
     </main>
     <script src="{% static 'js/abbr.js' %}"></script>
