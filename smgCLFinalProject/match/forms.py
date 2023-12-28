@@ -58,10 +58,19 @@ class ArrangeMatchForm(forms.ModelForm):
             raise forms.ValidationError(
                 "You cannot arrange a match before the start of the season."
             )
+        if team2 not in self.user.team.allowed_teams.all():
+            raise forms.ValidationError(
+                "You cannot arrange a match with this team."
+            )
 
     class Meta:
         model = Match
         fields = ("date", "time", "team2")
+
+        widgets = {
+            'date': forms.DateInput(attrs={'required': True}),
+            'time': forms.TimeInput(attrs={'required': True}),
+        }
 
 
 class MatchResponseForm(forms.ModelForm):
