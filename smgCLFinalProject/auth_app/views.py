@@ -1,6 +1,10 @@
+import os
+
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, DetailView, UpdateView
 
@@ -15,8 +19,23 @@ class CaptainRegister(CreateView):
 
     def form_valid(self, form):
         result = super().form_valid(form)
+
         login(self.request, self.object)
+
+        self.send_welcome_email(self, self.object.email)
+
         return result
+
+    @staticmethod
+    def send_welcome_email(self, user_email):
+        subject = "Welcome to the SMG Champions League!"
+        message = ("Thank you for registering to our website. Enjoy the beautiful game and good luck!"
+                   "\nSMG Champions League Team")
+        from_email = os.environ.get("EMAIL_HOST_USER")
+        recipient_list = [user_email]
+
+        # Use fail_silently=False for development; set it to True in production #TODO
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
 
 class CaptainLogin(LoginView):
