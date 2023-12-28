@@ -1,0 +1,24 @@
+div {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.article {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #0E1E5B;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    border: none;
+}
+
+.article-title {
+    font-size: 24px;
+}
+
+.article-author, .article-date {
+    font-size: 18px;
+    margin: 0;
+}
+
+

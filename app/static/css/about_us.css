@@ -1,0 +1,18 @@
+strong{
+    font-weight: bold;
+}
+
+li {
+    text-align: left;
+}
+
+.custom-carousel-image {
+    max-height: 720px;
+    max-width: 1280px;
+    margin: 0 auto;
+    border-radius: 24px;
+}
+
+.carousel-item.active {
+    background-color: transparent;
+}
