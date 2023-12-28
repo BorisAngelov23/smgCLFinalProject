@@ -4,6 +4,7 @@
         color: #0dcaf0;
     }
 </style>
+{% if played_matches %}
 <h1 style="text-align: center">Played</h1>
         <div class="table-responsive">
             <table class="table table-hover table-borderless" style="font-size: larger">
@@ -30,3 +31,4 @@
                 </tbody>
             </table>
         </div>
+{% endif %}

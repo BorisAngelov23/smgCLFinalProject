@@ -1,0 +1,33 @@
+{% load static %}
+<style>
+    a {
+        color: #0dcaf0;
+    }
+</style>
+{% regroup played_matches by stage as matches_by_stage %}
+{% for stage_group in matches_by_stage %}
+    <h2 style="text-align: center">{{ stage_group.grouper }}</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-borderless" style="font-size: larger">
+            <tbody>
+                {% for match in stage_group.list %}
+                    <tr>
+                        <td>
+                            <button class="collapsible" style="text-align: center; font-size: larger" data-match-id="{{ match.pk }}">
+                                <a href="{% url 'players_from_team' pk=match.team1.pk %}">{{ match.team1 }}</a> vs.
+                                <a href="{% url 'players_from_team' pk=match.team2.pk %}">{{ match.team2 }}</a>
+                                <br>{{ match.team1_goals }} - {{ match.team2_goals }}
+                            </button>
+                            <div class="content">
+                                {{ match.date|date:"d.m.Y" }}, {{ match.time|time:"H:i" }}
+                                <p style="margin-top: 15px"><strong>Goalscorers:</strong></p>
+                                <ul id="goalscorers-{{ match.pk }}" style="margin-bottom: 15px; color: #0dcaf0"></ul>
+                                <p><strong>MVP:</strong> <a href="{% url 'player_detail' match.mvp.pk %}" style="color: #0dcaf0">{{ match.mvp }}</a></p>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}

@@ -1,19 +1,25 @@
+{% load static %}
 <style>
     a {
         color: #0dcaf0;
     }
 </style>
-<h1 style="text-align: center">Upcoming</h1>
-        <div class="table-responsive">
-            <table class="table table-hover table-borderless">
-                <tbody>
-                    {% for match in upcoming_matches %}
-                        <tr>
-                            <td style="font-size: larger"> <a href="{% url 'players_from_team' pk=match.team1.pk %}">{{ match.team1 }}</a> vs.
-                                <a href="{% url 'players_from_team' pk=match.team2.pk %}">{{ match.team2 }}</a>
-                                <br>{{ match.date|date:"d.m.Y" }} {{ match.time|time:"H:i" }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+
+{% if upcoming_matches %}
+    <h1 style="text-align: center">Upcoming</h1>
+    <div class="table-responsive">
+        <table class="table table-hover table-borderless">
+            <tbody>
+                {% for match in upcoming_matches %}
+                    <tr>
+                        <td style="font-size: larger">
+                            <a href="{% url 'players_from_team' pk=match.team1.pk %}">{{ match.team1 }}</a> vs.
+                            <a href="{% url 'players_from_team' pk=match.team2.pk %}">{{ match.team2 }}</a>
+                            <br>{{ match.date|date:"d.m.Y" }} {{ match.time|time:"H:i" }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}

@@ -18,6 +18,16 @@ class Match(models.Model):
         ("declined", "Decline"),
     )
 
+    STAGE_CHOICES = (
+        ("Final", "Final"),
+        ("Semi-finals", "Semi-finals"),
+        ("Quarter-finals", "Quarter-finals"),
+        ("Play-offs", "Play-offs"),
+        ("Round 3", "Round 3"),
+        ("Round 2", "Round 2"),
+        ("Round 1", "Round 1"),
+    )
+
     date = models.DateField()
     time = models.TimeField()
     team1 = models.ForeignKey(
@@ -28,6 +38,8 @@ class Match(models.Model):
     )
     status = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default="pending")
+    stage = models.CharField(
+        max_length=20, choices=STAGE_CHOICES, default="Round 1")
     team1_goals = models.IntegerField(null=True, blank=True)
     team2_goals = models.IntegerField(null=True, blank=True)
     mvp = models.ForeignKey(

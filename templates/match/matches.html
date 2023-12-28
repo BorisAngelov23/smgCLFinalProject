@@ -8,8 +8,10 @@
     </header>
     <main class="container" style="margin-top: 20px">
         {% include 'match/live_matches.html' %}
-        {% include 'match/upcoming_matches.html' %}
-        {% include 'match/played_matches.html' %}
+
+        {% include 'match/upcoming_matches.html' with upcoming_matches=upcoming_matches%}
+
+        {% include 'match/played_matches_stages.html' with played_matches=played_matches %}
     </main>
     <script src="{% static 'js/played_and_live_matches.js' %}"></script>
 {% endblock %}
