@@ -1,8 +1,11 @@
 postgresql
 *.env
 *.pyc
-todo.txt
+Dockerfile
+docker-compose.production.yml
+docker-compose.yml
 bfg-1.14.0.jar
+todo.txt
 media/article_images/r9.jpg
 media/article_images/resize_smg.jpg
 media/article_images/smgcl.jpg
